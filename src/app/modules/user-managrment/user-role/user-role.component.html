@@ -1,0 +1,80 @@
+<ecm-top-screen-header screen_name="ROLE"></ecm-top-screen-header>
+
+<ecm-modal caption="Role" #myEntityRole (Save)="Post_ut_Roles()">
+    <form [formGroup]="ut_Roles_Form">
+        <div class="row Product-modal-Basic-Body">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <ecm-textbox labelCaption="Code*">
+                            <input type="text" (blur)="onblur()" placeholder="Enter Code" formControlName="Code">
+                        </ecm-textbox>
+                    </div>
+                    <div class="col-lg-4">
+                        <ecm-textbox labelCaption="Role*">
+                            <input type="text" (blur)="onblur()" placeholder="Enter Role" formControlName="Role1">
+                        </ecm-textbox>
+                    </div>
+                    <div class="col-lg-4">
+                        <ecm-dropdown dropdownCaption="Client*">
+                            <select class="font-px-11" formControlName="Entity" (change)="showwrites($event)">
+                                <option *ngFor="let item of entityName;" [value]="item.Id">{{item.client}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="role-top-screens-main" *ngIf="showWrites">
+        <div class="row">
+            <div class="col-lg-3">
+                <ecm-dropdown dropdownCaption="Menu Category*">
+                    <select class="font-px-11" formControlName="Entity" (change)="changeCategories($event)">
+                        <option *ngFor="let item of screensType">{{item.typeName}}</option>
+                    </select>
+                </ecm-dropdown>
+            </div>
+            <div class="col-lg-9">
+                <div class="ag-theme-alpine" style="margin-top: 0px">
+                    <ecm-btn-group IconClass="fa fa-save" BtnText="Save" (EcmBtnclick)="saveModules()"></ecm-btn-group>
+                    <!-- <ecm-btn-group IconClass="fa fa-plus" BtnText="New"></ecm-btn-group> -->
+                    <ecm-ag-grid [mode]="2" [rowData]="rowdata2" defaultHeight="350" [_columns]="columnDefss" rowSelection="multiple" (selectedRowClick)="selectRow($event)" (Check)="checkbox($event)" [rowselect]="false" [pagination]="false">
+                    </ecm-ag-grid>
+                </div>
+            </div>
+        </div>
+    </div>
+</ecm-modal>
+
+<div class="padding-Screen" style="padding-top: 0 !important;margin-top: -2px;">
+    <div style="display: flex;align-items: center;">
+        <ecm-btn-group IconClass="fa fa-plus" BtnText="New" (EcmBtnclick)="openModal()"></ecm-btn-group>
+        <div style="position: relative;">
+            <label class="font-px-11" style="color:#2b92d5;margin-right:2px;">Client:</label>
+            <i class="fa fa-search icon-shadow"></i>
+            <select class="font-px-11" style="padding: 0 4px;margin-top: 3px; width: 150px; border: 1px solid #ddd;border-radius: 3px;">
+                <option *ngFor="let item of entityName;" [value]="item.Id">{{item.client}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="ag-theme-alpine">
+        <ecm-ag-grid [rowData]="rowdata" defaultHeight="510" [_columns]="columnDefs">
+        </ecm-ag-grid>
+    </div>
+</div>
+
+<style>
+    .fa-search {
+        position: absolute;
+        font-size: 13px !important;
+        right: 3px;
+        background: #fff;
+        width: 13px;
+        height: 13px;
+        top: 6px;
+        color: rgb(43, 146, 213);
+    }
+</style>
+
+<ecm-loder></ecm-loder>

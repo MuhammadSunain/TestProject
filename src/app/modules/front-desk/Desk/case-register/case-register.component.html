@@ -1,0 +1,143 @@
+<ecm-top-screen-header screen_name="CASE REGISTER"></ecm-top-screen-header>
+
+<ecm-modal #mymodal [caption]="caption">
+    <form [formGroup]="myform">
+        <div class="row Product-modal-Basic-Body">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <dcs-textbox caption="Case ID" [placeholder]="false" [disabled]="true" formControlName="caseid">
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-3">
+                        <dcs-textbox caption="Case Date*" typee="date" formControlName="casedate">
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Requester Type*">
+                            <select class="font-px-11" (change)="getValue($event)" formControlName="requestertype">
+                                <option hidden></option>
+                                <option [value]="item.txt" *ngFor="let item of reqesterstype;"> {{item.txt}} </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Requester*" *ngIf="reqestertype === 'Student'">
+                            <select class="font-px-11" formControlName="requester" (change)="getreuesterchange()">
+                                <option hidden></option>
+                                <option *ngFor="let item of requester;">{{item.FullName}}</option>
+                            </select>
+                        </ecm-dropdown>
+                        <ecm-dropdown dropdownCaption="Requester*" *ngIf="reqestertype === 'Employee'">
+                            <select class="font-px-11" formControlName="requester">
+                                <option hidden></option>
+                                <option *ngFor="let item of requester;">{{item.firstname}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3">
+                        <dcs-textbox caption="Course*" [disabled]="true" formControlName="course">
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-3">
+                        <dcs-textbox caption="Section*" [disabled]="true" formControlName="section">
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Case Group*" formControlName="casegrp">
+                            <select class="font-px-11">
+                                <option hidden></option>
+                                <option *ngFor="let item of casegrps;"> {{item.CaseGroup}} </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Case Type*" formControlName="casetype">
+                            <select class="font-px-11">
+                                <option hidden></option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Priority*" formControlName="priorty">
+                            <select class="font-px-11">
+                                <option hidden></option>
+                                <option *ngFor="let item of priorities;">{{item.txt}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Assign To*" formControlName="assignto">
+                            <select class="font-px-11">
+                                <option hidden></option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</ecm-modal>
+
+
+
+<div class="padding-Screen" style="padding-top: 0 !important;margin-top: -2px;">
+    <div style="display: flex;align-items: center;">
+        <ecm-btn-group IconClass="fa fa-plus" BtnText="New" (EcmBtnclick)="openModal()"></ecm-btn-group>
+        <div style="position: relative;border-right: 1px solid #ddd;padding-right: 7px;">
+            <label class="font-px-11" style="color:#2b92d5;margin-right:2px;">Entity:</label>
+            <i class="fa fa-search icon-shadow"></i>
+            <select class="font-px-11" style="margin-top: 3px;border: 1px solid #ddd; padding: 0 3px;border-radius: 3px;width: 185px;">
+                <option [value]="item.EntityName" *ngFor="let item of entities;"> {{item.EntityName}} </option>
+        </select>
+        </div>
+        <div style="position: relative;border-right: 1px solid #ddd;padding-right: 7px;margin-left: 4px;">
+            <label class="font-px-11" style="color:#2b92d5;margin-right:2px;">Requester Type:</label>
+            <i class="fa fa-search icon-shadow"></i>
+            <select class="font-px-11" style="margin-top: 3px;border: 1px solid #ddd; padding: 0 3px;border-radius: 3px;width: 95px;">
+                <option [value]="item.txt" *ngFor="let item of reqesterstype;"> {{item.txt}} </option>
+        </select>
+        </div>
+        <div style="position: relative;border-right: 1px solid #ddd;padding-right: 7px; margin-left: 4px;">
+            <label class="font-px-11" style="color:#2b92d5;margin-right:2px;">Case Type:</label>
+            <i class="fa fa-search icon-shadow"></i>
+            <select class="font-px-11" style="margin-top: 3px;border: 1px solid #ddd; padding: 0 3px;border-radius: 3px;width: 145px;">
+                <option [value]="item.CaseType" *ngFor="let item of casetypes;"> {{item.CaseType}} </option>
+        </select>
+        </div>
+        <div style="position: relative;border-right: 1px solid #ddd;padding-right: 7px; margin-left: 4px;">
+            <label class="font-px-11" style="color:#2b92d5;margin-right:2px;">Stage:</label>
+            <i class="fa fa-search icon-shadow"></i>
+            <select class="font-px-11" style="margin-top: 3px;border: 1px solid #ddd; padding: 0 3px;border-radius: 3px;width: 115px;">
+                <option *ngFor="let item of stages;" [value]="item.Stage"> {{item.Stage}} </option>
+        </select>
+        </div>
+    </div>
+    <div class="ag-theme-alpine">
+        <ecm-ag-grid [rowData]="rowdata" defaultHeight="510" [_columns]="columnDefs">
+        </ecm-ag-grid>
+    </div>
+</div>
+
+<ecm-loder></ecm-loder>
+<dcs-error #dcserror [type]="type" [message]="messsageerror"></dcs-error>
+
+<style>
+    .fa-search {
+        position: absolute;
+        font-size: 13px !important;
+        right: 10px;
+        background: #fff;
+        width: 13px;
+        height: 13px;
+        top: 6px;
+        color: rgb(43, 146, 213);
+    }
+</style>

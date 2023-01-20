@@ -1,0 +1,129 @@
+<ecm-top-screen-header screen_name="USER AUTHORIZATION"></ecm-top-screen-header>
+
+<ecm-modal caption="User Authorization" #myUserAuthModal (Save)="ut_User_Auth_Data_Post()">
+    <form [formGroup]="ut_User_Auth_Form">
+        <div class="row Product-modal-Basic-Body">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Client*">
+                            <select class="font-px-11" [disabled]="disabled" formControlName="Client">
+                                <option hidden></option>
+                                <option *ngFor="let item of entityName;" [value]="item.Id" selected>{{item.client}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-6"></div>
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="User Name*" formControlName="username" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-6">
+                        <dcs-textbox typee="password" caption="Password*" formControlName="pass" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-12">
+                        <dcs-textbox caption="Full Name" formControlName="Fullname" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-6">
+                        <ecm-textbox labelCaption="Email">
+                            <input type="email" (blur)="onblur()" placeholder="Enter Email" formControlName="Email">
+                        </ecm-textbox>
+                    </div>
+                    <div class="col-lg-6">
+                        <ecm-textbox labelCaption="Cell No">
+                            <input type="text" (blur)="onblur()" placeholder="Enter Cell No" formControlName="CellNo">
+                        </ecm-textbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='App-Tabs-UL' style="margin-top: 11px;position: relative;">
+            <ul class='m-0 p-0 d-flex tabs-nav' id='tabs-nav2'>
+                <li class="li-none" [class.active]="id === '1'" (click)="tabChange('1')"> <span class='font-we-600'> <i class='fa fa-user'></i> Role</span> </li>
+                <li class="li-none" [class.active]="id === '2'" (click)="tabChange('2')"> <span class='font-we-600'> <i class='fa fa-list' style="margin: 0 3px;"></i>Entities</span> </li>
+            </ul>
+        </div>
+        <div class="row" *ngIf="id === '1'">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="User Category*" [lookupdata]="userCategory" [colDefsArr]="userCategoryArr">
+                            <select class="font-px-11" formControlName="UserCategory">
+                                <option hidden></option>
+                                <option *ngFor="let item of userCategory;"> {{item.name}} </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Role*" [lookupdata]="Roles" [colDefsArr]="rolesGridArr">
+                            <select class="font-px-11" formControlName="Role">
+                                <option *ngFor="let item of Roles;" [value]="item.Role1">{{item.Role1}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Status*" type="2">
+                            <select class="font-px-11" formControlName="Status">
+                                <!-- <option hidden></option> -->
+                                <option value="Active">Active</option>
+                                <option value="InActive">InActive</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="id === '2'">
+            <div class="col-lg-12" style="margin-top: 17px;">
+                <div class="ag-theme-alpine">
+                    <ecm-ag-grid [mode]="2" [rowData]="rowdata2" defaultHeight="210" (selectedRowClick)="selectRow($event)" (Check)="checkbox($event)" [rowselect]="false" rowSelection="multiple" [pagination]="false" [_columns]="columnDefs2">
+                    </ecm-ag-grid>
+                </div>
+            </div>
+        </div>
+    </form>
+</ecm-modal>
+
+<div class="padding-Screen" style="padding-top: 0 !important;margin-top: -2px;">
+    <div style="display: flex;align-items: center;">
+        <ecm-btn-group IconClass="fa fa-plus" BtnText="New" (EcmBtnclick)="openModal()"></ecm-btn-group>
+        <div style="position: relative;border-right: 1px solid #ddd;padding-right: 7px;margin-right: 5px;">
+            <label class="font-px-11" style="color:#2b92d5;margin-right:2px;">Client:</label>
+            <i class="fa fa-search icon-shadow"></i>
+            <select class="font-px-11" style="margin-top: 3px;border: 1px solid #ddd;border-radius: 3px; padding: 0 4.5px;  ">
+                <option *ngFor="let item of entityName;">{{item.client}}</option>
+            </select>
+        </div>
+        <div style="position: relative;border-right: 1px solid #ddd;padding-right: 7px;">
+            <label class="font-px-11" style="color:#2b92d5;margin-right:2px;">Role:</label>
+            <i class="fa fa-search icon-shadow"></i>
+            <select class="font-px-11" style="margin-top: 3px;border: 1px solid #ddd; padding: 0 4.5px;border-radius: 3px;width: 82px;">
+                <option value="Admin">Admin</option>
+                <option value="Employee">Employee</option>
+                <option value="Parent">Parent</option>
+                <option value="Student">Student</option>
+            </select>
+        </div>
+    </div>
+    <div class="ag-theme-alpine">
+        <ecm-ag-grid [rowData]="rowdata" defaultHeight="510" [_columns]="columnDefs" routerLinkForRefreash="/Modules/UserManagement/UserAuthrization">
+        </ecm-ag-grid>
+    </div>
+</div>
+
+<style>
+    .fa-search {
+        position: absolute;
+        font-size: 13px !important;
+        right: 10px;
+        background: #fff;
+        width: 13px;
+        height: 13px;
+        top: 6px;
+        color: rgb(43, 146, 213);
+    }
+</style>
+
+<ecm-loder></ecm-loder>

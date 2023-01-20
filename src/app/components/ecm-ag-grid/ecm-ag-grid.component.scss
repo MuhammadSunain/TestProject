@@ -1,0 +1,16 @@
+.grid-options {
+    width: 65px;
+    position: absolute;
+    height: 100%;
+    right: 73px;
+    display: flex;
+    align-items: center;
+    button {
+        height: 100%;
+        padding: 3px 11px;
+        color: #1c86ad;
+        &:hover {
+            background: rgba(100, 194, 255, 0.3215686275);
+        }
+    }
+}

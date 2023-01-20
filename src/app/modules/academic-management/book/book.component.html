@@ -1,0 +1,154 @@
+<ecm-top-screen-header screen_name="BOOK"></ecm-top-screen-header>
+
+<ecm-modal #mymodal caption="Book" (Save)="save()">
+    <form [formGroup]="myform">
+        <div class="row Product-modal-Basic-Body">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <dcs-textbox caption="Book No" formControlName="bookno" [disabled]="true" [placeholder]=false>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Course*" [lookupdata]="cources" [colDefsArr]="courseArr">
+                            <select class="font-px-11" formControlName="course" (change)="getSubjectsCourseWise($event)">
+                                <option hidden></option>
+                                <option value="{{item.Course}}" *ngFor="let item of cources;">{{item.Course}} ( {{currentSyllabus}} )
+                                </option>
+                                <!-- [value]="item.Id" -->
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Subject*">
+                            <select class="font-px-11" formControlName="subject" (change)="getsubjectchange()">
+                                <option hidden></option>
+                                <option value="{{item.SubjectName}}" *ngFor="let item of subjects;">{{item.SubjectName}}
+                                </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3">
+                        <dcs-textbox caption="Subject Type" formControlName="subtype" [disabled]="true" [placeholder]=false>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="Book Name*" formControlName="bookname" [disabled]="false" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-6"></div>
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="Tag" formControlName="tag" [disabled]="false" [placeholder]=false>
+                        </dcs-textbox>
+                    </div>
+                </div>
+            </div>
+            <div class="book-datail">
+                <span>Book Detail</span>
+                <div class="fa fa-angle-down"></div>
+            </div>
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Author*">
+                            <select class="font-px-11" formControlName="author">
+                                <option hidden></option>
+                                <option value="{{item.Name}}" *ngFor="let item of authors;">{{item.Name}}
+                                </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Publisher*">
+                            <select class="font-px-11" formControlName="publisher">
+                                <option hidden></option>
+                                <option value="{{item.Publisher}}" *ngFor="let item of publishers;">{{item.Publisher}}
+                                </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3">
+                        <dcs-textbox caption="Barcode" formControlName="barcode" [disabled]="false" [placeholder]=false>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-3">
+                        <dcs-textbox caption="Price" formControlName="price" [disabled]="false" [placeholder]=false>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3">
+                        <dcs-textbox caption="Edition" formControlName="edition" [disabled]="false" [placeholder]=false>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-3">
+                        <dcs-textbox caption="Year" formControlName="year" [disabled]="false" [placeholder]=false>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="Series Name" formControlName="seriesname" [disabled]="false" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</ecm-modal>
+
+<div class="subjects-top">
+    <div class="subject-select-Syllabus">
+        <div style="position: relative;border-right: 1px solid #ddd;padding-right: 7px;margin-right: 5px;">
+            <label class="font-px-11 font-we-700" style="color:#2b92d5;margin-right:2px;">SYLLABUS :</label>
+            <i class="fa fa-search icon-shadow"></i>
+            <!-- <form [formGroup]="segmentForm"> -->
+            <select [(ngModel)]="currentSyllabus" (change)="gethdr_Ac_Courses()" class="font-px-11" style="margin-top: 3px;border: 1px solid #ddd;border-radius: 3px;  padding: 0 4px;  width: 135px;">
+                <option *ngFor="let item of Syllabus;" [value]="item.Syllabus">{{item.Syllabus}}</option>
+            </select>
+            <!-- </form> -->
+        </div>
+    </div>
+    <div class="list-of-subject">
+        <div style="text-align: center; width: 100%;color: var(--ecm-main);" *ngIf="shownoredordfound">
+            <h3 style="font-weight: 600;margin: 25px 0;font-size: 24px;">NO RECORD FOUND...</h3>
+        </div>
+        <li *ngFor="let item of courcesfortop;">
+            <span>{{item.Course}}</span>
+            <div class="list-of-subject-count">
+                <i class="fa fa-graduation-cap"></i>
+                <span>9</span>
+            </div>
+        </li>
+    </div>
+</div>
+
+<div class="padding-Screen" style="padding-top: 0 !important;margin-top: -2px;">
+    <ecm-btn-group IconClass="fa fa-plus" BtnText="New" (EcmBtnclick)="openModal()"></ecm-btn-group>
+    <div class="ag-theme-alpine">
+        <ecm-ag-grid [rowData]="rowdata" defaultHeight="425" [_columns]="columnDefs">
+        </ecm-ag-grid>
+    </div>
+</div>
+
+<style>
+    .fa-search {
+        position: absolute;
+        font-size: 13px !important;
+        right: 10px;
+        background: #fff;
+        width: 13px;
+        height: 13px;
+        top: 6px;
+        color: rgb(43, 146, 213);
+    }
+</style>
+
+<ecm-loder></ecm-loder>
+<dcs-error #dcserror [type]="type" [message]="messageerror"></dcs-error>

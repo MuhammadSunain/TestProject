@@ -1,0 +1,47 @@
+select::-ms-expand {
+    display: none !important;
+  }
+  
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: "";
+  }
+
+.active{
+    background: var(--ecm-main);
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    color: white !important;
+}
+
+.addtional-detail {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--ecm-main);
+  margin-top: 4px;
+  font-weight: 600;
+  .icon-before {
+    font-weight: 600;
+    font-size: 12px;
+    &::before {
+      font-family: "FontAwesome";
+      float: right;
+      content: "\f077";
+      font-size: 10px;
+    }
+  }
+}
+
+.addtional-detail::before {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 104%;
+  left: -16px;
+  background: var(--ecm-main);
+  bottom: -2px;
+}

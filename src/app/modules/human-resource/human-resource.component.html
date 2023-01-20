@@ -1,0 +1,38 @@
+<ecm-top-screen-header screen_name="HUMAN RESOURCE"></ecm-top-screen-header>
+
+<div style="border-bottom: 1px solid #bdc3c7; display: flex; align-items:center;justify-content:space-between; padding: 0 10px;cursor: pointer;">
+    <span style="color: #2b92d5;" class="font-px-12 font-we-600"> <i class="fa fa-book font-px-10"></i> Employee Profiling</span>
+    <i class="fa fa-angle-up" style="color: #2b92d5;"></i>
+</div>
+
+
+<div class="padding-Screen" style="height: 150px;">
+    <div class="row">
+        <div class="col-lg-2">
+            <label style="color: #2b92d5;border-bottom: 1px solid #bdc3c7;width: 100%;" class="font-px-12 font-we-600">Profiling</label>
+            <ul class="m-0 p-0"> 
+                <li class="font-px-11 a-hover" style="margin-top: 4px;" routerLink="/Modules/HumanResource/EmployeeProfiling/Profiling"> <i class="fa fa-bars mr-5 font-px-10"></i><span>Employee Profile</span></li>
+            </ul>
+        </div> 
+    </div>
+</div>
+
+
+<ecm-loder></ecm-loder>
+
+<router-outlet></router-outlet>
+
+
+<style>
+    .a-hover i {
+        color: #bdc3c7 !important;
+    }
+    .a-hover span {
+        color: #000 !important;
+        cursor: pointer;
+    }
+    .a-hover span:hover {
+        text-decoration: underline !important;
+        cursor: pointer;
+    }
+</style>

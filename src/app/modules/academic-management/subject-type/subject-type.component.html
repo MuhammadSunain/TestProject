@@ -1,0 +1,41 @@
+<ecm-top-screen-header screen_name="SUBJECT TYPE"></ecm-top-screen-header>
+
+
+<ecm-modal caption="Subject Type" #mysubtypeModal (Save)="Post_hdr_Ac_SubjectTypeData()">
+    <form [formGroup]="hdr_Ac_SubjectTypeDataForm">
+        <div class="row Product-modal-Basic-Body">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="Code*" formControlName="Code" [disabled]="false" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-12">
+                        <dcs-textbox caption="Subject Type*" formControlName="subtype" [disabled]="false" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-12">
+                        <dcs-textarea caption="Description" formControlName="Description" [placeholder]="true">
+                        </dcs-textarea>
+                    </div>
+                    <div class="col-lg-6">
+                        <dcs-textbox typee="color" caption="Color Code" formControlName="" [disabled]="false" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </form>   
+</ecm-modal>
+
+
+<div class="padding-Screen" style="padding-top: 0 !important;margin-top: -2px;">
+    <ecm-btn-group IconClass="fa fa-plus" BtnText="New" (EcmBtnclick)="openModal()"></ecm-btn-group>
+    <div class="ag-theme-alpine">
+        <ecm-ag-grid [rowData]="rowdata" defaultHeight="510" [_columns]="columnDefs">
+        </ecm-ag-grid>
+    </div>
+</div>
+
+<ecm-loder></ecm-loder>
+<dcs-error #dcserror [type]="type" [message]="messageerror"></dcs-error>

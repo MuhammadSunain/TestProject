@@ -1,0 +1,223 @@
+<div *ngIf="!ReportDropdown">
+    <!--component html goes here -->
+    <!-- [ngClass]="position === 1 ? '' : _captionWidth" -->
+    <label *ngIf="showCaption === true">{{ caption }}</label>
+    <span style="float: right;" *ngIf="
+      (controlEl &&
+        controlEl.errors &&
+        controlEl.errors?.invalid &&
+        (controlEl.dirty || controlEl.touched)) ||
+      touchedElement
+    " class="error-info">
+    <span
+      class="tooltipss"
+      style="color: red; margin-left: 5px; font-size: 12px; font-weight: 500;"
+      type="button"
+    >
+      <i class="fa fa-info-circle" aria-hidden="true"></i>
+      <!-- <object data="../../../../assets/ICONS/icon_error.svg" class="icon-error"> </object> -->
+      <span class="tooltiptextss">
+        <i
+          class="fas fa-exclamation-triangle"
+          style="color: red; font-size: 12px; padding-right: 4px;"
+        ></i>
+        {{ errMsg }}
+      </span>
+    </span>
+    </span>
+    <!-- [ngClass]="position === 1 ? '' : _fieldWidth" -->
+    <template #droplookup></template>
+    <!-- <ixs-lookup #lookup [Config]="config" [Data]="data" [Caption]="caption">
+  </ixs-lookup> -->
+    <div [ngClass]="disabled ? 'disabled-dropdown' : 'non-disabled'">
+        <div class="my-margin-top" [ngClass]="
+        (controlEl &&
+          controlEl.errors &&
+          controlEl.errors?.invalid &&
+          (controlEl.dirty || controlEl.touched)) ||
+        touchedElement
+          ? 'border-outline-invalid input-container'
+          : 'border-outline-valid input-container'
+      " style="align-items: center !important;">
+            <!-- <input type="text" /> -->
+            <div *ngIf="magnifierPosition === 'left'" id="Lister" class="dropdown-search-icon" style="line-height: normal; top: 0; height: 100% !important;" [ngClass]="
+          disabled
+            ? 'backgroundnone input-group-addon input-search-icon dropdown-radius'
+            : 'input-group-addon input-search-icon dropdown-radius'
+        ">
+                <span (click)="disabled || open()">
+          <i
+            title="Alt+F1"
+            class="fa fa-search flat-icon search-icon pl-0 input-button"
+            style="
+              line-height: normal !important;
+              padding: 0;
+              height: 100%;
+              top: -1px;
+            "
+          ></i>
+        </span>
+            </div>
+            <select [ngClass]="
+          magnifierPosition === 'right'
+            ? 'dcs-control magnifierRight'
+            : 'input-field dcs-control magnifierLeft'
+        " #select="ngModel" (keydown)="onKeyDown($event)" [disabled]="disabled" style="color: #54596b; line-height: normal !important;" [(ngModel)]="value" (blur)="onBlur()" (ngModelChange)="Modelchange()" (keyup.backspace)="ondelete($event)" (keyup.delete)="ondelete($event)"
+                (keydown.alt.F1)="disabled || open()">
+        <option
+          *ngIf="(showNone == true && value == null) || value == undefined"
+          value=""
+          style="display: none;"
+        ></option>
+        <!-- <option hidden></option> -->
+        <option *ngFor="let item of data" [value]="item[valueMember]">
+          {{ item[displayMember] }}
+        </option>
+      </select>
+
+            <div *ngIf="magnifierPosition === 'right'" id="Lister" [ngClass]="
+          disabled
+            ? 'backgroundnone input-group-addon input-search-icon dropdown-radius'
+            : 'input-group-addon input-search-icon dropdown-radius'
+        ">
+                <span (click)="disabled || open()">
+          <i
+            class="fa fa-search flat-icon"
+            style="
+              font-size: 11px !important;
+              padding: 0px 4px;
+              position: relative;
+              margin-left: -20px;
+            "
+          ></i>
+        </span>
+                <span *ngIf="showButton" (click)="onButtonClickedInner()">
+          <i
+            class="fa fa-bars flat-icon"
+            style="
+              font-size: 12px;
+              padding: 0px 4px 0px 0px;
+              position: relative;
+              top: -1px;
+            "
+          ></i>
+        </span>
+            </div>
+            <div class="input-group-btn" style="position: absolute; right: 13px;">
+                <span *ngIf="showTool" class="input-group-addon" style="
+            background-color: transparent !important;
+            border-color: transparent !important ;
+            color: #287fc4;
+          " data-toggle="dropdown" aria-expanded="false">
+          <i
+            (click)="openSubScreen()"
+            class="fa fa-bars flat-icon flat-icon"
+          ></i>
+        </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="ReportDropdown">
+    <div class="report-control">
+        <label *ngIf="showCaption === true" class="report-label">
+      {{ caption }}
+    </label>
+        <template #droplookup></template>
+        <div [ngClass]="disabled ? 'disabled-dropdown' : 'non-disabled'">
+            <div [ngClass]="
+          (controlEl &&
+            controlEl.errors &&
+            controlEl.errors?.invalid &&
+            (controlEl.dirty || controlEl.touched)) ||
+          touchedElement
+            ? 'border-outline-invalid input-container'
+            : 'border-outline-valid input-container'
+        ">
+                <div *ngIf="magnifierPosition === 'left'" id="Lister" class="dropdown-search-icon" [ngClass]="
+            disabled
+              ? 'backgroundnone input-group-addon input-search-icon dropdown-radius'
+              : 'input-group-addon input-search-icon dropdown-radius'
+          ">
+                    <span (click)="disabled || open()">
+            <i class="fa fa-search flat-icon search-icon pl-0 input-button"></i>
+          </span>
+                </div>
+                <select [ngClass]="
+            magnifierPosition === 'right'
+              ? 'dcs-control magnifierRight'
+              : 'input-field dcs-control magnifierLeft'
+          " #select="ngModel" (keydown)="onKeyDown($event)" [disabled]="disabled" style="color: #54596b;" [(ngModel)]="value" (blur)="onBlur()" (ngModelChange)="Modelchange()" (keyup.backspace)="ondelete($event)" (keyup.delete)="ondelete($event)" (keydown.alt.F1)="disabled || open()">
+          <option *ngIf="showNone" value="">None</option>
+          <option *ngFor="let item of data" [value]="item[valueMember]">
+            {{ item[displayMember] }}
+          </option>
+        </select>
+                <div *ngIf="magnifierPosition === 'right'" id="Lister" [ngClass]="
+            disabled
+              ? 'backgroundnone input-group-addon input-search-icon dropdown-radius'
+              : 'input-group-addon input-search-icon dropdown-radius'
+          ">
+                    <span (click)="disabled || open()">
+            <i
+              class="fa fa-search flat-icon"
+              style="
+                font-size: 11px !important;
+                padding: 0px 4px;
+                position: relative;
+                margin-left: -20px;
+              "
+            ></i>
+          </span>
+                    <span *ngIf="showButton" (click)="onButtonClickedInner()">
+            <i
+              class="fa fa-bars flat-icon"
+              style="
+                font-size: 12px;
+                padding: 0px 4px 0px 0px;
+                position: relative;
+                top: -1px;
+              "
+            ></i>
+          </span>
+                </div>
+            </div>
+        </div>
+        <span style="float: right;" *ngIf="
+        (controlEl &&
+          controlEl.errors &&
+          controlEl.errors?.invalid &&
+          (controlEl.dirty || controlEl.touched)) ||
+        touchedElement
+      " class="error-info">
+      <span
+        class="tooltipss"
+        style="color: red; margin-left: 5px; font-size: 12px; font-weight: 500;"
+        type="button"
+      >
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+        <span class="tooltiptextss">
+          <i
+            class="fas fa-exclamation-triangle"
+            style="color: red; font-size: 12px; padding-right: 4px;"
+          ></i>
+          {{ errMsg }}
+        </span>
+        </span>
+        </span>
+    </div>
+</div>
+
+<style>
+    select {
+        /* for Firefox */
+        -moz-appearance: none;
+        /* for Chrome */
+        -webkit-appearance: none;
+    }
+    
+    .magnifierRight {
+        padding-right: 15px !important;
+    }
+</style>

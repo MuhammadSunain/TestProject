@@ -1,0 +1,16 @@
+.App-Hover-Btn {
+    margin-left: 0px;
+    font-size: 11px;
+    // border-right: 1px solid #fff;
+    color: #2189b1;
+    margin-right: 3px;
+    padding: 3px 12px;
+    // height: 21px;
+    cursor: pointer !important;
+    &:hover {
+        background: rgba(100, 194, 255, 0.3215686274509804);
+    }
+    i {
+        font-size: 10px;
+    }
+}

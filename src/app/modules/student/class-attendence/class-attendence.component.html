@@ -1,0 +1,73 @@
+<ecm-top-screen-header screen_name="CLASS ATTENDANCE"></ecm-top-screen-header>
+
+
+<div class="attendence-selection">
+        <div class="attendence-selection-course">
+            <i class="fa fa-search icon-shadow"></i>
+            <span>Course :</span>
+            <select style="width: 109px;" (change)="getCourseValueForStudents($event)" formControlName="course" id="course">
+                <option hidden></option>
+                <option *ngFor="let item of cources;">{{item.Course}}</option>
+            </select>
+        </div>
+        <div class="attendence-selection-course">
+            <i class="fa fa-search icon-shadow"></i>
+            <span>Section :</span>
+            <select style="width: 88px;" (change)="getSectionValueForStudents($event); " formControlName="section" id="section">
+                <option hidden></option>
+                <option *ngFor="let item of sections;">{{item.Section}}</option>
+            </select>
+        </div>
+        <form [formGroup]="my_form">
+        <div class="attendence-selection-course">
+            <span>Attendance Date :</span>
+            <input type="date" style="height: 20px;border: none;background: transparent;width: 115px;font-size: 12.7px;" formControlName="attendate" >
+        </div>
+    </form>
+        <div class="attendence-selection-course" style="padding-right: 0;padding-left: 3px;">
+            <ecm-btn-group IconClass="fa fa-times" BtnText="Clear" style="margin-top: -3px;" (EcmBtnclick)="clearForm()"></ecm-btn-group>
+        </div>
+    </div>
+
+<div class="row">
+    <div class="col-lg-9" style="padding-right: 0;">
+        <div class="ag-theme-alpine" style="margin: 0 0 0 5px;">
+           <div>
+                <ecm-btn-group IconClass="fa fa-save" BtnText="Save" style="margin-top: -3px;"></ecm-btn-group>
+                <ecm-btn-group IconClass="fa fa-trash" BtnText="Delete" style="margin-top: -3px;"></ecm-btn-group>
+           </div>
+            <ecm-ag-grid (onCellClick)="getStdId($event)" (cellbtnClick)="cellbtnnClick($event)" [rowData]="rowdata" defaultHeight="510" [_columns]="columnDefs" [rowselect]="false" [pagination]="false">
+            </ecm-ag-grid>
+            <!-- <custom-grid [colDefs]="columnDefs"></custom-grid> -->
+        </div>
+    </div>
+    <div class="col-lg-3" style="padding-left: 0;">
+        <div class="top-head">
+            <h3 class="m-0">ATTENDANCE SUMMARY</h3>
+        </div>
+        <div class="info-box" style="display: grid;
+        grid-template-columns: 2fr 2fr;">
+            <span class="info-box-text blue">Total Student</span>
+            <span style="display: grid; grid-template-columns: 2fr 2fr;">
+                <i class="fa fa-male tiles-icon-boy" style="font-size: 20px !important; color: #50a2ca; padding-bottom: 5px;">
+                    <span class="stu-data">{{boy}}</span>
+                </i>
+            </span>
+            <span class="info-box-number info-box-summary-count blue">{{TotalStudents}}</span>
+            <i class="fa fa-female tiles-icon-boy" style="font-size: 20px !important; color: #f7106c;"><span class="stu-data">{{girls}}</span></i>
+        </div>
+        <div class="progress-bar-container mrl">
+            <div class="progress-bar" [ngStyle]="{width: progressWidth + '%'}"></div>
+        </div>
+    </div>
+</div>
+
+<ecm-loder></ecm-loder>
+<dcs-error #dcserror [type]="type" [message]="messageerror"></dcs-error>
+
+<style>
+    .dis {
+        pointer-events: none;
+        background: #f6faff;
+    }
+</style>

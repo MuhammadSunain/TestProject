@@ -1,0 +1,12 @@
+.App-Main-Top-Head {
+    position: sticky;
+    height: 20px;
+    background: var(--ecm-main);
+    color: var(--ecm-light);
+    display: flex;
+    align-items: center;
+    padding: 2px 7px 1px 7px;
+    margin-top: -2px;
+    top: 70px !important;
+    z-index: 111;
+}

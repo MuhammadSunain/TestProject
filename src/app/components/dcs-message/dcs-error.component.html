@@ -1,0 +1,28 @@
+<modal #dcserror   [ngClass]="
+type === 4 ? 'error'
+  : '' || type === 3
+  ? 'warning'
+  : '' || type === 2
+  ? 'success'
+  : '' || type === 1
+  ? 'info'
+  : ''
+">
+    <modal-header style="display: contents;">
+        <h5 class='modal-title font-px-11 font-we-600' id="exampleModalToggleLabel">
+            <i *ngIf="type === 4" class="fa fa-exclamation-circle"></i>
+            <i *ngIf="type === 3" class="fa fa-exclamation-triangle"></i>
+            <i *ngIf="type === 2" class="fa fa-check-circle"></i>
+            <i *ngIf="type === 1" class=""></i>
+            {{type === 4 ? "Error" : "Success"}}</h5>
+            <span class='closs-modal' (click)="close();"><i class="fa fa-times font-px-12"></i></span>
+    </modal-header>
+    <modal-content>
+        <div class="modal-body modal-simple-padding">
+            <h4 class=' font-px-13 font-we-600' style="margin: 15px !important;">{{message}}</h4>
+        </div>
+    </modal-content>
+    <modal-footer style="margin: 0;">
+        <button class='modal-footer-btn border-none' data-bs-dismiss="modal" aria-label="Close" (click)="close()"> <i class="fa fa-circle-check"></i> OK</button>
+    </modal-footer>
+</modal>

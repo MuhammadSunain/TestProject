@@ -1,0 +1,79 @@
+<ecm-top-screen-header screen_name="CASE STAGE"></ecm-top-screen-header>
+
+<ecm-modal caption="Case Stage" #mymodal (Save)="save()">
+    <form [formGroup]="myform">
+        <div class="row Product-modal-Basic-Body">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="Code*" formControlName="Code" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Case User" [type]="2">
+                            <select class="font-px-11" formControlName="caseuser" style="pointer-events: none;opacity: 0.5;">
+                                <option> {{caseuser}} </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-6"></div>
+                    <div class="col-lg-6"></div>
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Stage Type*" [lookupdata]="stagetypes" [colDefsArr]="casestagesArr">
+                            <select class="font-px-11" formControlName="stagetype">
+                                <option hidden></option>
+                                <option *ngFor="let item of stagetypes;"> {{item.name}} </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-6">
+                        <dcs-textbox typee="color" caption="Color Code" formControlName="colorcode" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-12">
+                        <dcs-textbox caption="Stages*" formControlName="stages" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-12">
+                        <dcs-textarea caption="Description" formControlName="Description" [placeholder]="true">
+                        </dcs-textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</ecm-modal>
+
+
+<div class="padding-Screen" style="padding-top: 0 !important;margin-top: -2px;">
+    <div style="display: flex;align-items: center;">
+        <ecm-btn-group IconClass="fa fa-plus" BtnText="New" (EcmBtnclick)="openModal()"></ecm-btn-group>
+        <div style="position: relative;border-right: 1px solid #ddd;padding-right: 7px;">
+            <label class="font-px-11" style="color:#2b92d5;margin-right:2px;">Case User:</label>
+            <i class="fa fa-search icon-shadow"></i>
+            <select (change)="getCaseUser($event)" class="font-px-11" style="margin-top: 3px;border: 1px solid #ddd; padding: 0 3px;border-radius: 3px;width: 95px;">
+                <option [value]="item.name" *ngFor="let item of caseUsers;"> {{item.name}} </option>
+        </select>
+        </div>
+    </div>
+    <div class="ag-theme-alpine">
+        <ecm-ag-grid [rowData]="rowdata" defaultHeight="510" [_columns]="columnDefs">
+        </ecm-ag-grid>
+    </div>
+</div>
+
+<ecm-loder></ecm-loder>
+<dcs-error #dcserror [type]="type" [message]="messsageerror"></dcs-error>
+
+<style>
+    .fa-search {
+        position: absolute;
+        font-size: 13px !important;
+        right: 10px;
+        background: #fff;
+        width: 13px;
+        height: 13px;
+        top: 6px;
+        color: rgb(43, 146, 213);
+    }
+</style>

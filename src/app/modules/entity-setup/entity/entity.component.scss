@@ -1,0 +1,86 @@
+.active {
+    background: var(--ecm-main);
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    color: white !important;
+}
+
+.App-Product-Image {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.App-Product-Image img {
+    width: 126px;
+    border-radius: 7px;
+}
+
+.App-Image-Box:hover .image-hover-eff-add {
+    height: 100%;
+    transition: 0.5s;
+    /* top: 0; */
+    left: 0;
+    border-radius: 7px;
+    color: white;
+    opacity: 1;
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    z-index: 0;
+}
+
+.image-hover-eff-add {
+    position: absolute;
+    top: 0;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 7px;
+    transition: 0.5s;
+    left: 0;
+    opacity: 0;
+    height: 0;
+    background: #2b95ba52;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-hover-eff-add i {
+    width: 40px;
+    height: 40px;
+    transform: rotate(0deg);
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    margin: 3px;
+    display: flex !important;
+    background: #268fb5;
+    transition: 0.5s;
+    color: white;
+}
+
+.App-Image-Box .fa-pen-to-square {
+    position: absolute;
+    right: -8px;
+    font-size: 23px;
+    bottom: -3px;
+    color: #268fb5;
+    background: #fff;
+}
+
+.App-Image-Box:hover .fa-pen-to-square {
+    display: none;
+    transition: .5s;
+}
+
+select::-ms-expand {
+    display: none !important;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: "";
+}

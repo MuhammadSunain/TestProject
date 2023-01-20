@@ -1,0 +1,31 @@
+<modal #dcsdelete>
+    <modal-header style="display: contents;">
+        <h5 class='modal-title font-px-11 font-we-600' id="exampleModalToggleLabel">{{caption}}</h5>
+        <span class='closs-modal' (click)="close();"><i class="fa fa-times font-px-12" style="color: var(--ecm-main);" ></i></span>
+    </modal-header>
+    <modal-content>
+        <div class="modal-body modal-simple-padding">
+            <h4 class=' font-px-13 font-we-600' style="margin: 15px !important;">{{message}} {{deleteingid}} </h4>
+        </div>
+    </modal-content>
+    <modal-footer style="margin: 0;">
+        <button class='modal-footer-btn border-none btn btn-grid btn-btnsize' (click)="yesFunction()">YES</button>
+        <button class='modal-footer-btn border-none btn btn-grid btn-btnsize' (click)="close()">NO</button>
+    </modal-footer>
+</modal>
+
+<style>
+    .btn-grid {
+        margin-right: 4px;
+        line-height: 1;
+        font-size: 12px;
+        height: 20px;
+        border: none;
+        font-weight: 500;
+        padding-top: 4px;
+        border-radius: 2px;
+        margin-top: -3px;
+        background: #1f86af;
+        color: #fff;
+    }
+</style>

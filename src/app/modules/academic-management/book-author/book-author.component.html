@@ -1,0 +1,64 @@
+<ecm-top-screen-header screen_name="AUTHOR"></ecm-top-screen-header>
+
+<ecm-modal caption="Author" #mybookModal (Save)="Post_hdr_Ac_BookAuthorData()">
+    <form [formGroup]="hdr_Ac_BookAuthorDataForm">
+        <div class="row Product-modal-Basic-Body">
+            <div class="col-lg-9">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <dcs-textbox caption="Code*" formControlName="Code" [disabled]="false" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-4">
+                        <ecm-dropdown dropdownCaption="Author Type*" [lookupdata]="AuhtorTypes" [colDefsArr]="AuthorTypelookupArr">
+                            <select class="font-px-11" formControlName="authortype">
+                                <option hidden></option>
+                                <option *ngFor="let item of AuhtorTypes;">{{item.Type}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-8">
+                        <dcs-textbox caption="Nick Name" formControlName="nickname" [disabled]="false" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-8">
+                        <dcs-textbox caption="Name*" formControlName="name" [disabled]="false" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-4">
+                        <ecm-dropdown dropdownCaption="Country*" [lookupdata]="getCountries" [colDefsArr]="CountrylookupArr">
+                            <select class="font-px-11" formControlName="Country">
+                                <option hidden></option>
+                                <option *ngFor="let item of getCountries;">{{item.Country}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-4">
+                        <dcs-textbox typee="date" caption="Year Born*" formControlName="yearborn" [disabled]="false" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-4">
+                        <dcs-textbox typee="date" caption="Year Died" formControlName="yeardeied" [disabled]="false" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-8">
+                        <dcs-textarea caption="Awards" formControlName="Awards" [placeholder]="true">
+                        </dcs-textarea>
+                    </div>
+                </div>    
+            </div>    
+        </div>
+    </form>   
+</ecm-modal>
+
+<div class="padding-Screen" style="padding-top: 0 !important;margin-top: -2px;">
+    <ecm-btn-group IconClass="fa fa-plus" BtnText="New" (EcmBtnclick)="openModal()"></ecm-btn-group>
+    <div class="ag-theme-alpine">
+        <ecm-ag-grid [rowData]="rowdata" defaultHeight="510" [_columns]="columnDefs">
+        </ecm-ag-grid>
+    </div>
+</div>
+
+<ecm-loder></ecm-loder>
+<dcs-error #dcserror [type]="type" [message]="messageerror"></dcs-error>

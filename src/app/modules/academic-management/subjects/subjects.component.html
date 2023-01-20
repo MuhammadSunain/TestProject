@@ -1,0 +1,156 @@
+<ecm-top-screen-header screen_name="SUBJECT"></ecm-top-screen-header>
+
+<ecm-modal caption="Subject" #mysubjectModal (Save)="posthdr_Ac_Subjects()">
+    <form [formGroup]="hdr_Ac_SubjectDataForm">
+        <div class="row Product-modal-Basic-Body">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <dcs-textbox caption="Code*" formControlName="Code" [disabled]="false" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Subject Type*" [lookupdata]="subtypes" [colDefsArr]="subtypeArr">
+                            <select class="font-px-11" formControlName="subtype">
+                                <option hidden></option>
+                                <option *ngFor="let item of subtypes;">{{item.SubjectType}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Syllabus*" [lookupdata]="Syllabus" [colDefsArr]="syllabusArr">
+                            <select class="font-px-11" formControlName="Syllabus" (change)="getSyllabusWiseCourses($event);">
+                                <option hidden></option>
+                                <option *ngFor="let item of Syllabus;">{{item.Syllabus}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Course*" [lookupdata]="cources" [colDefsArr]="courseArr">
+                            <select class="font-px-11" formControlName="Course">
+                                <option hidden></option>
+                                <option value="{{item.Course}}" *ngFor="let item of cources;">{{item.Course}} ({{courseSyllabusname}})
+                                </option>
+                                <!-- [value]="item.Id" -->
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Language*" [lookupdata]="languageArr" [colDefsArr]="languageGridArr">
+                            <select class="font-px-11" formControlName="Language">
+                                <option hidden></option>
+                                <option *ngFor="let item of languageArr;">{{item.langName}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Periods Per Week" type="2">
+                            <select class="font-px-11" formControlName="PeriodsPerWeek">
+                                <option hidden></option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="Subject Name*" formControlName="subname" [disabled]="false" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <!-- <div class="col-lg-3">
+                        <ecm-textbox labelCaption="Color Code">
+                            <input type="color" (blur)="onblur()" placeholder="Enter Subject Type" formControlName="subtype">
+                        </ecm-textbox>
+                    </div> -->
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Subject Category*" [lookupdata]="subCatArr" [colDefsArr]="subCatGridArr">
+                            <select class="font-px-11" formControlName="subcat">
+                                <option hidden></option>
+                                <option *ngFor="let item of subCatArr;" [selected]="item.selected"> {{item.subjcatName}} </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Subject Class*" [lookupdata]="subClassArr" [colDefsArr]="subClassGridArr">
+                            <select class="font-px-11" formControlName="subclass">
+                                <option hidden></option>
+                                <option *ngFor="let item of subClassArr;" [selected]="item.selected"> Core Subject </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Compulsory*" type="2">
+                            <select class="font-px-11" formControlName="Compulsory">
+                                <option hidden></option>
+                                <option selected>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</ecm-modal>
+
+<div class="subjects-top">
+    <div class="subject-select-Syllabus">
+        <div style="position: relative;border-right: 1px solid #ddd;padding-right: 7px;margin-right: 5px;">
+            <label class="font-px-11 font-we-700" style="color:#2b92d5;margin-right:2px;">SYLLABUS:</label>
+            <i class="fa fa-search icon-shadow"></i>
+            <!-- <form [formGroup]="segmentForm"> -->
+            <select [(ngModel)]="currentSyllabus" (change)="gethdr_Ac_Courses()" class="font-px-11" style="margin-top: 3px;border: 1px solid #ddd;border-radius: 3px;  padding: 0 4px;  width: 135px;">
+                <option *ngFor="let item of Syllabus;" [value]="item.Syllabus">{{item.Syllabus}}</option>
+            </select>
+            <!-- </form> -->
+        </div>
+    </div>
+    <div class="list-of-subject">
+        <div style="text-align: center; width: 100%;color: var(--ecm-main);" *ngIf="shownoredordfound">
+            <h3 style="font-weight: 600;margin: 25px 0;font-size: 24px;">NO RECORD FOUND...</h3>
+        </div>
+        <li *ngFor="let item of courcesfortop;" (click)="getCourseWiseSubject(item)">
+            <span>{{item.Course}}</span>
+            <div class="list-of-subject-count">
+                <i class="fa fa-graduation-cap"></i>
+                <span>9</span>
+            </div>
+        </li>
+    </div>
+</div>
+
+<div class="padding-Screen" style="padding-top: 0 !important;margin-top: -2px;">
+    <ecm-btn-group IconClass="fa fa-plus" BtnText="New" (EcmBtnclick)="openModal()"></ecm-btn-group>
+    <div class="ag-theme-alpine">
+        <ecm-ag-grid [rowData]="rowdata" defaultHeight="425" [_columns]="columnDefs">
+        </ecm-ag-grid>
+    </div>
+</div>
+
+<style>
+    .fa-search {
+        position: absolute;
+        font-size: 13px !important;
+        right: 10px;
+        background: #fff;
+        width: 13px;
+        height: 13px;
+        top: 6px;
+        color: rgb(43, 146, 213);
+    }
+</style>
+
+<ecm-loder></ecm-loder>
+<dcs-error #dcserror [type]="type" [message]="messageerror"></dcs-error>

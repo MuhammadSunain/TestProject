@@ -1,0 +1,428 @@
+<ecm-top-screen-header screen_name="STUDENT INFORMATION"></ecm-top-screen-header>
+
+
+<ecm-modal caption="Student Profile" #mystudentInfoModal (Save)="POST_hdr_SM_student_Info()">
+    <form [formGroup]="hdr_SM_student_Info_form">
+        <div class="row Product-modal-Basic-Body">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="Student ID" [disabled]='true' [placeholder]=false>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-6"></div>
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="G.R #" formControlName="GRno" [placeholder]=false>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Student Category" [lookupdata]="stdCategory" [colDefsArr]="stdCategridArr">
+                            <select class="font-px-11" formControlName="stdcategory">
+                                <option hidden></option>
+                                <option *ngFor="let item of stdCategory;">{{item.studentcategory}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-12">
+                        <dcs-textbox caption="Full Name*" formControlName="Fullname" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-12">
+                        <dcs-textbox caption="Last Name" formControlName="lastname" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='App-Tabs-UL' style="margin-top: 11px;position: relative;">
+            <ul class='m-0 p-0 d-flex tabs-nav' id='tabs-nav2'>
+                <li class="li-none" [class.active]="id === '1'" (click)="tabChange('1')"> <span class='font-we-600'> <i class='fa fa-user'></i> Personal</span> </li>
+                <li class="li-none" [class.active]="id === '2'" (click)="tabChange('2')"> <span class='font-we-600'> <i class='fa fa-phone'></i>  Contact Information</span> </li>
+                <li class="li-none" [class.active]="id === '3'" (click)="tabChange('3')"> <span class='font-we-600'> <i class='fa fa-book'></i>  Academic</span> </li>
+                <li class="li-none" [class.active]="id === '4'" (click)="tabChange('4')"> <span class='font-we-600'> <i class='fa fa-male'></i>  Father's Information</span> </li>
+                <li class="li-none" [class.active]="id === '5'" (click)="tabChange('5')"> <span class='font-we-600'> <i class='fa fa-female'></i>  Mother's Information</span> </li>
+                <li class="li-none" [class.active]="id === '6'" (click)="tabChange('6')"> <span class='font-we-600'> <i class='fa fa-phone'></i>  Emergency Contact</span> </li>
+            </ul>
+        </div>
+        <div class="row" *ngIf="id === '1'">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <dcs-textbox typee="date" caption="Date Of Birth*" formControlName="dateofbirth" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-6"></div>
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="CNIC" formControlName="CNIC" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Nationality*" [lookupdata]="countries" [colDefsArr]="countryGridArr">
+                            <select class="font-px-11" formControlName="Nationality">
+                                <option hidden></option>
+                                <option *ngFor="let item of countries;">{{item.Country}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Gender*" [lookupdata]="gender" [colDefsArr]="gendergridArr">
+                            <select class="font-px-11" formControlName="Gender">
+                                <option hidden></option>
+                                <option *ngFor="let item of gender;"> {{item.name}} </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Religion*" [lookupdata]="religions" [colDefsArr]="religiongridArr">
+                            <select class="font-px-11" formControlName="Religion">
+                                <option hidden></option>
+                                <option *ngFor="let item of religions;"> {{item.Religion}} </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="id === '2'">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <dcs-textarea caption="Address*" formControlName="Address" [rows]="4" [placeholder]="true">
+                        </dcs-textarea>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <ecm-dropdown dropdownCaption="Country*" [lookupdata]="countries" [colDefsArr]="countryGridArr">
+                                    <select class="font-px-11" formControlName="Country">
+                                        <option hidden></option>
+                                        <option *ngFor="let item of countries;">{{item.Country}}</option>
+                                    </select>
+                                </ecm-dropdown>
+                            </div>
+                            <div class="col-lg-6">
+                                <ecm-dropdown dropdownCaption="State*" [lookupdata]="States" [colDefsArr]="stategridArr">
+                                    <select class="font-px-11" formControlName="State">
+                                        <option hidden></option>
+                                        <option *ngFor="let item of States;">{{item.State}}</option>
+                                    </select>
+                                </ecm-dropdown>
+                            </div>
+                            <div class="col-lg-6">
+                                <ecm-dropdown dropdownCaption="City*" [lookupdata]="Cities" [colDefsArr]="citygridArr">
+                                    <select class="font-px-11" formControlName="City">
+                                        <option hidden></option>
+                                        <option *ngFor="let item of Cities;">{{item.City}}</option>
+                                    </select>
+                                </ecm-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="addtional-detail">
+                    <span class="font-px-12">Contact Detail</span>
+                    <span class="icon-before"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <dcs-textbox caption="Phone No" formControlName="PhoneNo" [placeholder]=true>
+                            </dcs-textbox>
+                        </div>
+                        <div class="col-lg-6">
+                            <dcs-textbox caption="Mobile No*" formControlName="MobileNo" [placeholder]=true>
+                            </dcs-textbox>
+                        </div>
+                        <div class="col-lg-6">
+                            <dcs-textbox typee="email" caption="Email" formControlName="Email" [placeholder]=true>
+                            </dcs-textbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="id === '3'">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <dcs-textbox typee="date" caption="Joining Date*" formControlName="JoiningDate" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-6">
+                        <dcs-textbox typee="date" caption="Admission Date" formControlName="AdmissionDate" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Syllabus*" [lookupdata]="Syllabus" [colDefsArr]="syllabusArr">
+                            <select class="font-px-11" formControlName="Syllabus" (change)="getSyllabusWiseCourses($event)">
+                                <option hidden></option>
+                                <option *ngFor="let item of Syllabus;">{{item.Syllabus}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Course*" [lookupdata]="Courses" [colDefsArr]="courseArr">
+                            <select class="font-px-11" formControlName="Course">
+                                <option hidden></option>
+                                <option *ngFor="let item of Courses;">{{item.Course}} </option>
+                            </select>
+                        </ecm-dropdown>
+                        <!-- ({{coursename}}) -->
+                    </div>
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Section*" [lookupdata]="Sections" [colDefsArr]="sectiongridArr">
+                            <select class="font-px-11" formControlName="Section" (change)="getsectionWisesectiongroup($event)">
+                                <option hidden></option>
+                                <option *ngFor="let item of Sections;">{{item.Section}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Section Group" [lookupdata]="SectionGroup" [colDefsArr]="sectiongroupgridArr">
+                            <select class="font-px-11" formControlName="SectionGroup">
+                                <option hidden></option>
+                                <option *ngFor="let item of SectionGroup;">{{item.SectionGroup}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="id === '4'">
+            <div class="col-lg-12">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <dcs-textbox caption="Name*" formControlName="fathname" [placeholder]=true>
+                                    </dcs-textbox>
+                                </div>
+                                <div class="col-lg-6">
+                                    <dcs-textbox typee="number" caption="Father's Income" formControlName="FathersIncome" [placeholder]=true>
+                                    </dcs-textbox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <dcs-textbox caption="Contact No*" formControlName="fathcontactno" [placeholder]=true>
+                                    </dcs-textbox>
+                                </div>
+                                <div class="col-lg-6">
+                                    <dcs-textbox caption="CNIC*" formControlName="fathcnic" [placeholder]=true>
+                                    </dcs-textbox>
+                                </div>
+                                <div class="col-lg-6">
+                                    <dcs-textbox caption="Whatsapp No" formControlName="fathwhatsappno" [placeholder]=true>
+                                    </dcs-textbox>
+                                </div>
+                                <div class="col-lg-6">
+                                    <dcs-textbox typee="email" caption="Email" formControlName="fathEmail" [placeholder]=true>
+                                    </dcs-textbox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="addtional-detail">
+                        <span class="font-px-12">Contact Detail</span>
+                        <span class="icon-before"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <dcs-textarea caption="Address" formControlName="fathAddress" [placeholder]="true">
+                        </dcs-textarea>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <ecm-dropdown dropdownCaption="Country" [lookupdata]="countries" [colDefsArr]="countryGridArr">
+                                    <select class="font-px-11" formControlName="fathCountry">
+                                        <option hidden></option>
+                                        <option *ngFor="let item of countries;">{{item.Country}}</option>
+                                    </select>
+                                </ecm-dropdown>
+                            </div>
+                            <div class="col-lg-6">
+                                <ecm-dropdown dropdownCaption="State" [lookupdata]="States" [colDefsArr]="stategridArr">
+                                    <select class="font-px-11" formControlName="fathState">
+                                        <option hidden></option>
+                                        <option *ngFor="let item of States;">{{item.State}}</option>
+                                    </select>
+                                </ecm-dropdown>
+                            </div>
+                            <div class="col-lg-6">
+                                <ecm-dropdown dropdownCaption="City" [lookupdata]="Cities" [colDefsArr]="citygridArr">
+                                    <select class="font-px-11" formControlName="fathCity">
+                                        <option hidden></option>
+                                        <option *ngFor="let item of Cities;">{{item.City}}</option>
+                                    </select>
+                                </ecm-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="id === '5'">
+            <div class="col-lg-12">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <dcs-textbox caption="Name" formControlName="mothname" [placeholder]=true>
+                                    </dcs-textbox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <dcs-textbox caption="Contact No" formControlName="mothcontactno" [placeholder]=true>
+                                    </dcs-textbox>
+                                </div>
+                                <div class="col-lg-6">
+                                    <dcs-textbox caption="CNIC" formControlName="mothcnic" [placeholder]=true>
+                                    </dcs-textbox>
+                                </div>
+                                <div class="col-lg-6">
+                                    <dcs-textbox caption="Whatsapp No" formControlName="mothwhatsappno" [placeholder]=true>
+                                    </dcs-textbox>
+                                </div>
+                                <div class="col-lg-6">
+                                    <dcs-textbox typee="email" caption="Email" formControlName="mothEmail" [placeholder]=true>
+                                    </dcs-textbox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="addtional-detail">
+                        <span class="font-px-12">Contact Detail</span>
+                        <span class="icon-before"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <dcs-textarea caption="Address" formControlName="mothAddress" [placeholder]="true">
+                        </dcs-textarea>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <ecm-dropdown dropdownCaption="Country" [lookupdata]="countries" [colDefsArr]="countryGridArr">
+                                    <select class="font-px-11" formControlName="mothCountry">
+                                        <option hidden></option>
+                                        <option *ngFor="let item of countries;">{{item.Country}}</option>
+                                    </select>
+                                </ecm-dropdown>
+                            </div>
+                            <div class="col-lg-6">
+                                <ecm-dropdown dropdownCaption="State" [lookupdata]="States" [colDefsArr]="stategridArr">
+                                    <select class="font-px-11" formControlName="mothState">
+                                        <option hidden></option>
+                                        <option *ngFor="let item of States;">{{item.State}}</option>
+                                    </select>
+                                </ecm-dropdown>
+                            </div>
+                            <div class="col-lg-6">
+                                <ecm-dropdown dropdownCaption="City" [lookupdata]="Cities" [colDefsArr]="citygridArr">
+                                    <select class="font-px-11" formControlName="mothCity">
+                                        <option hidden></option>
+                                        <option *ngFor="let item of Cities;">{{item.City}}</option>
+                                    </select>
+                                </ecm-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="id === '6'">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Relation" type="2">
+                            <select class="font-px-11" formControlName="Relation">
+                                <option hidden></option>
+                                <option> Islam </option>
+                                <option> Hindu </option>
+                                <option> Christian </option>
+                                <option> Other </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="Name" formControlName="emername" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="Cnic" formControlName="emerCNIC" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="Contact No" formControlName="emerContactNo" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</ecm-modal>
+
+<div class="padding-Screen" style="padding-top: 0 !important;margin-top: -2px;">
+    <div style="display: flex;align-items: center;">
+        <ecm-btn-group IconClass="fa fa-bars" BtnText="" (EcmBtnclick)="openModal()"></ecm-btn-group>
+        <ecm-btn-group IconClass="fa fa-plus" BtnText="Add Student" (EcmBtnclick)="openModal()"></ecm-btn-group>
+        <div style="position: relative;border-right: 1px solid #ddd;padding-right: 7px;margin-right: 5px;">
+            <label class="font-px-11" style="color:#2b92d5;margin-right:2px;">Entity:</label>
+            <i class="fa fa-search icon-shadow"></i>
+            <select class="font-px-11"
+                style="margin-top: 3px;border: 1px solid #ddd;border-radius: 3px;width: 165px;padding: 0 3px;">
+                <option>{{entityName}}</option>
+            </select>
+        </div>
+        <div style="position: relative;border-right: 1px solid #ddd;padding-right: 7px;">
+            <label class="font-px-11" style="color:#2b92d5;margin-right:2px;">Status:</label>
+            <i class="fa fa-search icon-shadow"></i>
+            <select class="font-px-11" style="margin-top: 3px;border: 1px solid #ddd;border-radius: 3px;width: 82px;padding: 0 3px;">
+                <option value="Continue">Continue</option>
+                <option value="Leave">Leave</option>
+                <option value="Passed Out">Passed Out</option>
+                <option value="Suspend">Suspend</option>
+            </select>
+        </div>
+    </div>
+    <div class="ag-theme-alpine">
+        <ecm-ag-grid [rowData]="rowdata" (rowDbClicked)="editModal($event)" defaultHeight="510" [_columns]="columnDefs">
+        </ecm-ag-grid>
+    </div>
+</div>
+
+<style>
+    .fa-search {
+        position: absolute;
+        font-size: 13px !important;
+        right: 10px;
+        background: #fff;
+        width: 13px;
+        height: 13px;
+        top: 6px;
+        color: rgb(43, 146, 213);
+    }
+
+    .disible {
+        background-color: #ecf4ff !important;
+        opacity: 1;
+        cursor: not-allowed;
+        pointer-events: none;
+        border-color: #c3c3c3 !important;
+    }
+</style>
+
+<ecm-loder></ecm-loder>
+<dcs-error #dcserror [type]="type" [message]="messageerror"></dcs-error>

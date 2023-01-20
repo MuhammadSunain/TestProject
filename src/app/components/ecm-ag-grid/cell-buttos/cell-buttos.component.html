@@ -1,0 +1,32 @@
+<button id="item.Id" *ngFor="let item of cellButtons;" style="padding-right: 10px" (click)="markAttendance()" type="button" class="btn btn-sm btn-outline-primary attendance-button">
+  {{item.Caption}}
+</button>
+<!--  -->
+<!-- *ngFor="let item of buttons;" -->
+<!-- (click)="item.Function" -->
+<style>
+    /* Cell Button */
+
+    .attendance-button {
+        height: 20px;
+        font-size: 13px;
+        padding: 1px 0px !important;
+        margin: 1px;
+        border: 1px solid #1B81AB;
+        color: #2188B0;
+        cursor: pointer;
+        min-width: 23px;
+        border-radius: 4px;
+    }
+
+    .attendance-button:hover {
+        background: #2188B0;
+        color: #fff;
+    }
+</style>    
+
+<!-- [ngStyle]="{'background-color': date && this.params.data[date] === i+1 ? item.colorcode : ''}" -->
+
+<!-- [class.active]="date && this.params.data[date] === i+1" -->
+
+<!-- [style.border]="'1px solid ' + getColor(item,i)" -->

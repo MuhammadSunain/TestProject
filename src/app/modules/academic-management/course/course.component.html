@@ -1,0 +1,81 @@
+<ecm-top-screen-header screen_name="COURSE"></ecm-top-screen-header>
+
+<ecm-modal caption="Course" #myCourseModal (Save)="Post_hdr_Ac_Course()">
+    <form [formGroup]="hdr_Ac_CourseDataForm">
+        <div class="row Product-modal-Basic-Body">
+            <div class="col-lg-9">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <dcs-textbox caption="Code*" formControlName="Code" [disabled]='false' [placeholder]="true">
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-5"></div>
+                    <div class="col-lg-4">
+                        <ecm-dropdown dropdownCaption="Course Category*" [lookupdata]="courseCategory" [colDefsArr]="CourseCategorylookupArr">
+                            <select class="font-px-11" formControlName="courseCat">
+                                <option hidden></option>
+                                <option *ngFor="let item of courseCategory;">{{item.CourseCategory}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-8">
+                        <dcs-textbox caption="Course*" formControlName="Course" [disabled]='false' [placeholder]="true">
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-4">
+                        <ecm-dropdown dropdownCaption="Syllabus*" [lookupdata]="Syllabus" [colDefsArr]="SyllabuslookupArr">
+                            <select class="font-px-11" formControlName="Syllabus">
+                                <option hidden></option>
+                                <option *ngFor="let item of Syllabus;">{{item.Syllabus}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-8"></div>
+                    <div class="col-lg-4">
+                        <div class="checkbox">
+                            <input type="checkbox" (blur)="onblur()" (change)="checkValidity()" id="checkValidity" formControlName="ageValidity">
+                            <span class="font-px-12" style="margin-left:3px;">Age Validity</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <ecm-textbox labelCaption="Age From*">
+                            <input type="text" (blur)="onblur()" id="inp1" class="disible" [disabled]="true" placeholder="Enter Age From" formControlName="AgeFrom">
+                        </ecm-textbox>
+                    </div>
+                    <div class="col-lg-4">
+                        <ecm-textbox labelCaption="Age Till*">
+                            <input type="text" (blur)="onblur()" id="inp2" class="disible" [disabled]="true" placeholder="Enter Age Till" formControlName="AgeTill">
+                        </ecm-textbox>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </form>   
+</ecm-modal>
+
+<div class="padding-Screen" style="padding-top: 0 !important;margin-top: -2px;">
+    <ecm-btn-group IconClass="fa fa-plus" BtnText="New" (EcmBtnclick)="openModal()"></ecm-btn-group>
+    <div class="ag-theme-alpine">
+        <ecm-ag-grid [rowData]="rowdata" defaultHeight="510" [_columns]="columnDefs">
+        </ecm-ag-grid>
+    </div>
+</div>
+
+<ecm-loder></ecm-loder>
+<dcs-error #dcserror [type]="type" [message]="messageerror"></dcs-error>
+
+<style>
+    #checkValidity:checked .disible {
+        background-color: #fff !important;
+    }
+    .disible {
+        background-color: #ecf4ff !important;
+        opacity: 1;
+        cursor: not-allowed;
+        transition: .4s;
+        pointer-events: none;
+        border-color: #c3c3c3 !important;
+    }
+</style>

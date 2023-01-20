@@ -1,0 +1,63 @@
+.dcs-control {
+    background-color: #fff;
+    border-radius: 3px !important;
+    height: 21px !important;
+    padding: 0px 5px !important;
+    font-size: 11px !important;
+    border: 1px solid #e3e3e3 !important;
+    width: 100% !important;
+}
+
+
+.border-outline-invalid .dcs-control {
+    border-color: #f1a0ab !important;
+}
+
+
+.tooltipss {
+    position: relative;
+    display: inline-block;
+    color: red;
+    margin-left: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    /* border-bottom: 1px dotted black; */
+}
+
+.tooltipss .tooltiptextss {
+    visibility: hidden;
+    width: max-content;
+    max-width: 270px;
+    padding: 4px !important;
+    background-color: #ffffff;
+    font-size: 11px;
+    color: #181818;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    right: -7px;
+    margin-left: -45px;
+    /* border: 1px solid #d5896f; */
+    opacity: 0;
+    transition: opacity 0.3s;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.tooltipss .tooltiptextss::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: 4.5%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #ffffff transparent transparent transparent;
+}
+
+.tooltipss:hover .tooltiptextss {
+    visibility: visible;
+    opacity: 1;
+}

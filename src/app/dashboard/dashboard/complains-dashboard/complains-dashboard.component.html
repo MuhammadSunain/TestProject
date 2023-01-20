@@ -1,0 +1,263 @@
+<ecm-top-screen-header screen_name="CASE DASHBOARD"></ecm-top-screen-header>
+
+<div class="case-dashboard">
+    <div class="main-case">
+        <div class="row main-content">
+            <div class="col-sm custom-h">
+                <div class="card-body padding border-r">
+                    <div class=" no-gutters align-items-center">
+                        <div class="col-auto">
+                            <i class="fa fa-suitcase fa-2x total"></i>
+                        </div>
+                        <div class="mr-2">
+                            <div class="fontsize text-xs font-weight-bold text-wrap text-uppercase mb-1 text-gray-800"> Total Cases </div>
+                            <div class="h5 mb-0 font-weight-bold total"> 0 </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm custom-h">
+                <div class="card-body padding border-r">
+                    <div class=" no-gutters align-items-center">
+                        <div class="col-auto">
+                            <i class="fa fa-spinner fa-2x" style="color: rgb(208,0,0);"></i>
+                        </div>
+                        <div class="mr-2">
+                            <div class="fontsize text-xs font-weight-bold text-wrap text-uppercase mb-1 text-gray-800"> OPEN </div>
+                            <div class="h5 mb-0 font-weight-bold" style="color: rgb(208,0,0);"> 0 </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class=" col-sm custom-h ">
+                <div class="card-body padding border-r ">
+                    <div class=" no-gutters align-items-center ">
+                        <div class="col-auto ">
+                            <i class="fa fa-calendar-check fa-2x " style="color: rgb(251,242,59);"></i>
+                        </div>
+                        <div class="mr-2 ">
+                            <div class="fontsize text-xs font-weight-bold text-wrap text-uppercase mb-1 text-gray-800 "> IN-PROCESS </div>
+                            <div class="h5 mb-0 font-weight-bold " style="color: rgb(251,242,59);"> 0 </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm custom-h ">
+                <div class="card-body padding border-r ">
+                    <div class=" no-gutters align-items-center ">
+                        <div class="col-auto ">
+                            <i class="fa fa-calendar-times fa-2x " style="color: rgb(64,145,108);"></i>
+                        </div>
+                        <div class="mr-2 ">
+                            <div class="fontsize text-xs font-weight-bold text-wrap text-uppercase mb-1 text-gray-800 "> CLOSED </div>
+                            <div class="h5 mb-0 font-weight-bold 0 " style="color: rgb(64,145,108);"> 0 </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm custom-h ">
+                <div class="card-body padding border-r ">
+                    <div class=" no-gutters align-items-center ">
+                        <div class="col-auto ">
+                            <i class="fa fa-level-down-alt fa-2x " style="color: rgb(84,230,215);"></i>
+                        </div>
+                        <div class="mr-2 ">
+                            <div class="fontsize text-xs font-weight-bold text-wrap text-uppercase mb-1 text-gray-800 "> LOW </div>
+                            <div class="h5 mb-0 font-weight-bold " style="color: rgb(84,230,215);"> 0 </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm custom-h ">
+                <div class="card-body padding border-r ">
+                    <div class=" no-gutters align-items-center ">
+                        <div class="col-auto ">
+                            <i class="fa fa-level-up-alt fa-2x " style="color: #f36169;"></i>
+                        </div>
+                        <div class="mr-2 ">
+                            <div class="fontsize text-xs font-weight-bold text-wrap text-uppercase mb-1 text-gray-800 "> HIGH </div>
+                            <div class="h5 mb-0 font-weight-bold " style="color: #f36169;"> 0 </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm custom-h ">
+                <div class="card-body border-r p-0 ">
+                    <div class=" no-gutters align-items-center ">
+                        <ngx-gauge class="prog " [type]="gaugeType " [value]="gaugeValue " [label]="gaugeLabel " [append]="gaugeAppendText " [thick]="6 " [animate]="true ">
+                        </ngx-gauge>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-left: 4px;">
+        <div class="col-lg-3 p-0"></div>
+        <div class="col-lg-3 p-0">
+            <div class="case-status">
+                <div class="case-status-header">
+                    <h6 class="m-0 font-we-700 font-px-13 main">Case Status</h6>
+                    <div>
+                        <i class="fa fa-refresh dashboard-box-icon cursor-pointer font-px-12" style="margin-right: 3px;"></i>
+                        <i class="fa fa-window-maximize dashboard-box-icon font-px-12" (click)="openCaseStatusModal()"></i>
+                    </div>
+                </div>
+                <div class="case-status-chart">
+                    <canvas id="casestatuschart" height="199px" width="250px"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 p-0" style="margin-left: 12px;">
+            <div class="cases-right">
+                <div class="cases-right-top">
+                    <ul class="m-0 p-0 d-flex">
+                        <li *ngFor="let item of caseGroups;">{{item.CaseGroup}}</li>
+                    </ul>
+                </div>
+                <div class="cases-right-main">
+                    <div class="cases-right-table">
+                        <table>
+                            <thead>
+                                <th style="width: 150px;" class="font-px-12 font-we-400">Case Type</th>
+                                <th class="font-px-12 font-we-400">Open</th>
+                                <th class="font-px-12 font-we-400">In Process</th>
+                                <th class="font-px-12 font-we-400">Closed</th>
+                                <th class="font-px-12 font-we-400">Percentage</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="width: 150px;" class="font-px-12 font-we-400">Teacher’s related </td>
+                                    <td style="color: #fc2f2f;" class="font-px-12 font-we-700">41</td>
+                                    <td style="color: #ff7b05;" class="font-px-12 font-we-700">0</td>
+                                    <td style="color: #07c692 !important;" class="font-px-12 font-we-700">1</td>
+                                    <td class="font-px-12 font-we-400">26.75%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin: 5px 2px;">
+        <div class="col-lg-6 p-0" style="    margin-bottom: 10px;">
+            <div class="cases-right-top">
+                <ul class="m-0 p-0 d-flex">
+                    <li class="active">Case Assigned</li>
+                </ul>
+            </div>
+            <div class="cases-right-table" style="height: 190px;">
+                <table>
+                    <thead>
+                        <th style="border-right: 1px solid #ddd; margin: 2px 0; width: 80px;" class="font-px-11 font-we-400">S.No</th>
+                        <th style="border-right: 1px solid #ddd; margin: 2px 0; width: 150px;" class="font-px-11 font-we-400">Employee</th>
+                        <th style="border-right: 1px solid #ddd; margin: 2px 0;" class="font-px-11 font-we-400">Open</th>
+                        <th style="border-right: 1px solid #ddd; margin: 2px 0;" class="font-px-11 font-we-400">In Process</th>
+                        <th style="border-right: 1px solid #ddd; margin: 2px 0;" class="font-px-11 font-we-400">Closed</th>
+                        <th style="border-right: 1px solid #ddd; margin: 2px 0;" class="font-px-11 font-we-400">Closed%</th>
+                    </thead>
+                    <tbody>
+                        <!-- <tr>
+                            <td style="width: 150px;" class="font-px-12 font-we-400">Teacher’s related </td>
+                            <td style="color: #fc2f2f;" class="font-px-12 font-we-700">41</td>
+                            <td style="color: #ff7b05;" class="font-px-12 font-we-700">0</td>
+                            <td style="color: #07c692 !important;" class="font-px-12 font-we-700">1</td>
+                            <td class="font-px-12 font-we-400">26.75%</td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-6" style="    margin-bottom: 10px;">
+            <div class="cases-right-top">
+                <ul class="m-0 p-0 d-flex">
+                    <li class="active">Case Group Wise (Ageing)</li>
+                </ul>
+            </div>
+            <div class="cases-right-table" style="height: 190px;">
+                <table class="Ageing-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 154px;"> Case Group</th>
+                            <th> Within 30</th>
+                            <th> Within 31-60</th>
+                            <th> Within 61-90</th>
+                            <th> Above 90</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="width: 154px;">Unfair Treatment</td>
+                            <td>-</td>
+                            <td>1</td>
+                            <td>61</td>
+                            <td>-</td>
+                            <td>62</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td style="width: 154px;">Total</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>61</td>
+                            <td>0</td>
+                            <td>62</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin: 5px 2px;">
+        <div class="col-lg-3 p-0">
+            <div class="case-status">
+                <div class="case-status-header">
+                    <h6 class="m-0 font-we-700 font-px-13 main">Cases Last 6 Months</h6>
+                    <div>
+                        <i class="fa fa-refresh dashboard-box-icon cursor-pointer font-px-12" style="margin-right: 3px;"></i>
+                        <i class="fa fa-window-maximize dashboard-box-icon font-px-12" (click)="openCaseStatusModal()"></i>
+                    </div>
+                </div>
+                <div class="case-status-chart">
+                    <canvas id="caselastsixmonthchart" height="240"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3" style="    padding-right: 0;">
+            <div class="case-status">
+                <div class="case-status-header">
+                    <h6 class="m-0 font-we-700 font-px-13 main">Case Group</h6>
+                    <div>
+                        <i class="fa fa-refresh dashboard-box-icon cursor-pointer font-px-12" style="margin-right: 3px;"></i>
+                        <i class="fa fa-window-maximize dashboard-box-icon font-px-12" (click)="openCaseStatusModal()"></i>
+                    </div>
+                </div>
+                <div class="case-status-chart">
+                    <canvas id="casegroupschart" height="240"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="case-status">
+                <div class="case-status-header">
+                    <h6 class="m-0 font-we-700 font-px-13 main">Cases Last 7 Days</h6>
+                    <div>
+                        <i class="fa fa-refresh dashboard-box-icon cursor-pointer font-px-12" style="margin-right: 3px;"></i>
+                        <i class="fa fa-window-maximize dashboard-box-icon font-px-12" (click)="openCaseStatusModal()"></i>
+                    </div>
+                </div>
+                <div class="case-status-chart">
+                    <canvas id="caselastsevendayshchart" height="110"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ecm-modal #casestatusmodal caption="Cases" [showModalBtnToolBar]="false" [showModalBasicToolBar]="false">
+    <!-- <div class="case-status-chart">
+        <canvas id="casestatuschart" height="199px" width="250px"></canvas>
+    </div> -->
+</ecm-modal>

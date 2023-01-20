@@ -1,0 +1,84 @@
+<ecm-top-screen-header screen_name="ENTITY"></ecm-top-screen-header>
+
+<ecm-modal #EntityModal caption="Entity" (Save)="PostEntityData()">
+    <form [formGroup]="EntityForm">
+        <div class="row Product-modal-Basic-Body">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="Code*" formControlName="Code" [disabled]='false' [placeholder]="true">
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-12">
+                        <dcs-textbox caption="Entity Name*" formControlName="EntityName" [disabled]='false' [placeholder]="true">
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Entity Type*" [lookupdata]="Entity_Type" [colDefsArr]="entitytypeArr">
+                            <select class="font-px-11" formControlName="EntityType">
+                                <option *ngFor="let item of Entity_Type;" [value]="item.Type">{{item.Type}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="Entity Date*" typee="date" formControlName="EntityDate" [disabled]='false' [placeholder]="true">
+                        </dcs-textbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='App-Tabs-UL' style="margin-top: 11px;position: relative;">
+            <ul class='m-0 p-0 d-flex tabs-nav'>
+                <li class="li-none" [class.active]="id === '1'" (click)="tabChange('1')"> <span class='font-we-600'> <i class='fa fa-address-card'></i> Address</span> </li>
+                <li class="li-none" [class.active]="id === '2'" (click)="tabChange('2')"> <span class='font-we-600'> <i class='fa fa-image'></i> Logo</span> </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-lg-6" *ngIf="id === '1'">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <dcs-textbox caption="Owner Name*" formControlName="ownerName" [disabled]='false' [placeholder]="true">
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="Contact No*" formControlName="contsctno" [disabled]='false' [placeholder]="true">
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="Email*" typee="email" formControlName="email" [disabled]='false' [placeholder]="true">
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-12">
+                        <dcs-textarea caption="Address*" formControlName="address" [placeholder]="true">
+                        </dcs-textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" *ngIf="id === '2'">
+                <div class='App-Product-Image' title='Basic information'>
+                    <div class='App-Image-Box'>
+                        <img src="../../../assets/upload_image.png" alt='' />
+                        <div class='image-hover-eff-add'>
+                            <i class='fa fa-plus addbtn' data-bs-toggle="modal" data-bs-target="#addpro"></i>
+                        </div>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</ecm-modal>
+
+<div class="padding-Screen" style="padding-top: 0 !important;margin-top: -2px;">
+    <ecm-btn-group IconClass="fa fa-plus" BtnText="New" (EcmBtnclick)="openModal()"></ecm-btn-group>
+    <div class="ag-theme-alpine">
+        <ecm-ag-grid [rowData]="rowdata" defaultHeight="510" [_columns]="columnDefs">
+        </ecm-ag-grid>
+    </div>
+</div>
+
+<ecm-loder></ecm-loder>
+
+<dcs-error #dcserror [type]="type" [message]="messageerror"></dcs-error>
+
+<dcs-delete [type]="2" #dcsdelete></dcs-delete>

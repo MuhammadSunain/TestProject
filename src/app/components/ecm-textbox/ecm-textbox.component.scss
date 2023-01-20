@@ -1,0 +1,65 @@
+.Prod-Input {
+    position: relative;
+    margin-bottom: -5px;
+    label {
+        color: #7a7a7a;
+    }
+    i {
+        position: absolute;
+        left: 6px;
+        top: 31px;
+        font-size: 12px;
+        z-index: 111;
+        background: #fff;
+        color: rgb(43, 146, 213);
+    }
+
+    input {
+        background-color: #fff;
+        border-radius: 3px !important;
+        height: 21px !important;
+        padding: 0px 5px !important;
+        font-size: 11px !important;
+        border: 1px solid #e3e3e3 !important;
+        width: 100% !important;
+
+        &:focus {
+            border: 1px solid #2b92d5 !important;
+        }
+    }
+
+    textarea {
+        background-color: #fff !important;
+        border-radius: 3px !important;
+        height: 50px !important;
+        padding: 0px 5px !important;
+        font-size: 11px !important;
+        border: 1px solid #e3e3e3 !important;
+        width: 100% !important;
+        outline: none;
+        resize: none;
+
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 2px;
+        }
+
+        &:focus {
+            border: 1px solid #2b92d5 !important;
+        }
+    }
+
+    select {
+        background-color: #fff !important;
+        border-radius: 3px !important;
+        height: 21px !important;
+        padding: 0px 22px !important;
+        /* font-size: 12px !important; */
+        border: 1px solid #e3e3e3 !important;
+        width: 100% !important;
+        outline: none;
+    }
+}

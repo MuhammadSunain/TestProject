@@ -1,0 +1,270 @@
+<ecm-top-screen-header screen_name="EMPLOYEE PROFILE"></ecm-top-screen-header>
+
+<ecm-modal caption="Employee Profile" #mymodal (Save)="Save_Hr_employee_profile_data();">
+    <form [formGroup]="hdr_HR_Employee_Info_form">
+        <div class="row Product-modal-Basic-Body">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="Employee ID" formControlName="" [disabled]='true'>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="Short Code" formControlName="shrotcode">
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="Machine Code" formControlName="machinecode">
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-6">
+                        <dcs-textbox typee="date" caption="Joining Date*" formControlName="joindate">
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-12">
+                        <dcs-textbox caption="First Name*" formControlName="firstname" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-12">
+                        <dcs-textbox caption="Last Name*" formControlName="lastname" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='App-Tabs-UL' style="margin-top: 11px;position: relative;">
+            <ul class='m-0 p-0 d-flex tabs-nav' id='tabs-nav2'>
+                <li class="li-none" [class.active]="id === '1'" (click)="tabChange('1')"> <span class='font-we-600'> <i class='fa fa-list'></i>  Personal Information</span> </li>
+                <li class="li-none" [class.active]="id === '2'" (click)="tabChange('2')"> <span class='font-we-600'> <i class='fa fa-users'></i>  Employment</span> </li>
+            </ul>
+        </div>
+        <div class="row" *ngIf="id === '1'">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <dcs-textbox typee="date" caption="Date Of Birth*" formControlName="dateofbirth" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Gender*">
+                            <select class="font-px-11" formControlName="Gender">
+                                <option hidden></option>
+                                <option>Boy</option>
+                                <option>Girl</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Blood Group">
+                            <select class="font-px-11" formControlName="bloodgroup">
+                                <option hidden></option>
+                                <option> O Negative </option>
+                                <option> O Positive </option>
+                                <option > A Negative </option>
+                                <option > A Positive </option>
+                                <option > B Negative </option>
+                                <option > B Positve </option>
+                                <option > AB Negative </option>
+                                <option > AB Positive </option>
+                                <option > Unknown </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3">
+                        <dcs-textbox caption="CNIC*" formControlName="CNIC" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Birth Country*">
+                            <select class="font-px-11" formControlName="birthcountry">
+                                <option hidden></option>
+                                <option *ngFor="let item of countries;">{{item.Country}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Birth City*">
+                            <select class="font-px-11" formControlName="birthcity">
+                                <option hidden></option>
+                                <option hidden></option>
+                                <option *ngFor="let item of Cities;">{{item.City}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Nationality*">
+                            <select class="font-px-11" formControlName="nationality">
+                                <option hidden></option>
+                                <option *ngFor="let item of countries;">{{item.Country}}</option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3">
+                        <ecm-dropdown dropdownCaption="Religion">
+                            <select class="font-px-11" formControlName="religion">
+                                <option hidden></option>
+                                <option *ngFor="let item of religions;"> {{item.Religion}} </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-3">
+                        <dcs-textbox typee="email" caption="Email" formControlName="email" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3">
+                        <dcs-textbox caption="Contact No*" formControlName="contactno" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-3">
+                        <dcs-textbox caption="Whatsapp no*" formControlName="whatsappno" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="id === '2'">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Employee Type*">
+                            <select class="font-px-11" formControlName="emptype">
+                                <option hidden></option>
+                                <option> Permanent </option>
+                                <option> Contract </option>
+                                <option> Part Time </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Employee Category*">
+                            <select class="font-px-11" formControlName="empcategory">
+                              <option hidden></option>
+                              <option> Management </option>
+                              <option> Admin </option>
+                              <option> Teacher </option>
+                              <option> Staff </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Department*">
+                            <select class="font-px-11" formControlName="empdepartment">
+                                <option hidden></option>
+                                <option> Admin </option>
+                                <option> Accounts Department </option>
+                                <option> Teaching </option>
+                                <option> Reception </option>
+                                <option> Procurement </option>
+                                <option> Security Department </option>
+                                <option> Management </option>
+                                <option> Finance </option>
+                                <option> Academic </option>
+                                <option> Constructions Dep </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Designation*">
+                            <select class="font-px-11" formControlName="empdestination">
+                                <option hidden></option>
+                                <option> Principle </option>
+                                <option> Vice principal </option>
+                                <option> Accountant </option>
+                                <option> Teacher </option>
+                                <option> Teacher &amp; Coordinator </option>
+                                <option> Peon </option>
+                                <option> HOD </option>
+                                <option> Guard  </option>
+                                <option> Assistant Accountant </option>
+                                <option> Incharge </option>
+                                <option> Office Boy </option>
+                                <option> DOS </option>
+                                <option> P.A of Principal </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Site">
+                            <select class="font-px-11" formControlName="site">
+                                <option hidden></option>
+                                <option> {{currentEntity}} </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div>
+                    <!-- <div class="col-lg-6">
+                        <ecm-dropdown dropdownCaption="Employment*">
+                            <select class="font-px-11" formControlName="empment">
+                                <option hidden></option>
+                                <option *ngFor="let item of religions;"> {{item.Religion}} </option>
+                            </select>
+                        </ecm-dropdown>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </form>
+</ecm-modal>
+
+<div class="padding-Screen" style="padding-top: 0 !important;margin-top: -2px;">
+    <div style="display: flex;align-items: center;">
+        <ecm-btn-group IconClass="fa fa-bars" BtnText=""></ecm-btn-group>
+        <ecm-btn-group IconClass="fa fa-plus" BtnText="New" (EcmBtnclick)="openModal()"></ecm-btn-group>
+        <!-- <div style="position: relative;border-right: 1px solid #ddd;padding-right: 7px;">
+            <label class="font-px-11" style="color:#2b92d5;margin-right:2px;">Employment :</label>
+            <i class="fa fa-search icon-shadow"></i>
+            <select class="font-px-11" style="margin-top: 3px;border: 1px solid #ddd;border-radius: 3px;width: 82px;padding: 0 3px;">
+                <option value="Continue">Continue</option>
+                <option value="Leave">Leave</option>
+                <option value="Passed Out">Passed Out</option>
+                <option value="Suspend">Suspend</option>
+            </select>
+        </div> -->
+    </div>
+    <div class="ag-theme-alpine">
+        <ecm-ag-grid [rowData]="rowdata" defaultHeight="510" [_columns]="columnDefs">
+        </ecm-ag-grid>
+    </div>
+</div>
+
+<style>
+    .fa-search {
+        position: absolute;
+        font-size: 13px !important;
+        right: 10px;
+        background: #fff;
+        width: 13px;
+        height: 13px;
+        top: 6px;
+        color: rgb(43, 146, 213);
+    }
+
+    .disible {
+        background-color: #ecf4ff !important;
+        opacity: 1;
+        cursor: not-allowed;
+        pointer-events: none;
+        border-color: #c3c3c3 !important;
+    }
+    select::-ms-expand {
+    display: none !important;
+  }
+  
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: "";
+  }
+  .active{
+    background: var(--ecm-main);
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    color: white !important;
+}
+</style>
+
+<ecm-loder></ecm-loder>
+<dcs-error #dcserror [type]="type" [message]="messageerror"></dcs-error>

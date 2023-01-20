@@ -1,0 +1,57 @@
+<ecm-top-screen-header screen_name="ACADEMIC MANAGEMENT"></ecm-top-screen-header>
+
+<div style="border-bottom: 1px solid #bdc3c7; display: flex; align-items:center;justify-content:space-between; padding: 0 10px;cursor: pointer;">
+    <span style="color: #2b92d5;" class="font-px-12 font-we-600"> <i class="fa fa-book font-px-10"></i> General</span>
+    <i class="fa fa-angle-up" style="color: #2b92d5;"></i>
+</div>
+
+<div class="padding-Screen">
+    <div class="row">
+        <div class="col-lg-2">
+            <label style="color: #2b92d5;border-bottom: 1px solid #bdc3c7;width: 100%;" class="font-px-12 font-we-600">Course</label>
+            <ul class="m-0 p-0">
+                <li class="font-px-11 a-hover" style="margin-top: 4px;" routerLink="/Modules/AcademicManagement/hdr_Ac_Syllabus"> <i class="fa fa-bars mr-5 font-px-10"></i><span>Syllabus</span></li>
+                <li class="font-px-11 a-hover" style="margin-top: 4px;" routerLink="/Modules/AcademicManagement/hdr_Ac_Courses"> <i class="fa fa-bars mr-5 font-px-10"></i><span>Course</span></li>
+                <li class="font-px-11 a-hover" style="margin-top: 4px;" routerLink="/Modules/AcademicManagement/hdr_Ac_Section"> <i class="fa fa-bars mr-5 font-px-10"></i><span>Section </span></li>
+                <li class="font-px-11 a-hover" style="margin-top: 4px;" routerLink="/Modules/AcademicManagement/hdr_Ac_Section_Group"> <i class="fa fa-bars mr-5 font-px-10"></i><span>Section Group</span></li>
+            </ul>
+        </div>
+        <div class="col-lg-2">
+            <label style="color: #2b92d5;border-bottom: 1px solid #bdc3c7;width: 100%;" class="font-px-12 font-we-600"> Subject</label>
+            <ul class="m-0 p-0">
+                <li class="font-px-11 a-hover" style="margin-top: 4px;" routerLink="/Modules/AcademicManagement/hdr_Ac_SubjectType"> <i class="fa fa-bars mr-5 font-px-10"></i><span>Subject Type </span></li>
+                <li class="font-px-11 a-hover" style="margin-top: 4px;" routerLink="/Modules/AcademicManagement/hdr_Ac_Subject"> <i class="fa fa-bars mr-5 font-px-10"></i><span>Subject</span></li>
+            </ul>
+        </div>
+        <div class="col-lg-2">
+            <label style="color: #2b92d5;border-bottom: 1px solid #bdc3c7;width: 100%;" class="font-px-12 font-we-600"> Course Books</label>
+            <ul class="m-0 p-0">
+                <li class="font-px-11 a-hover" style="margin-top: 4px;" routerLink="/Modules/AcademicManagement/hdr_Ac_BookType"> <i class="fa fa-bars mr-5 font-px-10"></i><span>Book Type </span></li>
+                <li class="font-px-11 a-hover" style="margin-top: 4px;" routerLink="/Modules/AcademicManagement/hdr_Ac_BookCategory"> <i class="fa fa-bars mr-5 font-px-10"></i><span>Book Category</span></li>
+                <li class="font-px-11 a-hover" style="margin-top: 4px;" routerLink="/Modules/AcademicManagement/hdr_Ac_BookPublisher"> <i class="fa fa-bars mr-5 font-px-10"></i><span>Publisher</span></li>
+                <li class="font-px-11 a-hover" style="margin-top: 4px;" routerLink="/Modules/AcademicManagement/hdr_Ac_BookAuthor"> <i class="fa fa-bars mr-5 font-px-10"></i><span>Author</span></li>
+                <li class="font-px-11 a-hover" style="margin-top: 4px;" routerLink="/Modules/AcademicManagement/hdr_Ac_Book"> <i class="fa fa-bars mr-5 font-px-10"></i><span>Book</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<ecm-loder></ecm-loder>
+
+<router-outlet></router-outlet>
+
+<style>
+    .a-hover i {
+        color: #bdc3c7 !important;
+    }
+    
+    .a-hover span {
+        color: #000 !important;
+        cursor: pointer;
+    }
+    
+    .a-hover span:hover {
+        text-decoration: underline !important;
+        cursor: pointer;
+    }
+</style>

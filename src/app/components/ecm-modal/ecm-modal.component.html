@@ -1,0 +1,29 @@
+<modal #myModal>
+    <modal-header style="display: contents;" class="drapClass">
+        <h5 class="modal-title font-px-11 font-we-600 modal-title-simple" id="staticBackdropLabel"> <i
+                class="fa fa-bars mr-5" *ngIf="showCaptionIcon"></i>{{caption}}</h5>
+        <span class='closs-modal closs-modal-simple' style="color: var(--ecm-main);" *ngIf="type === 1" (click)="close();"><i class="fa fa-times font-px-12" accesskey="x"
+                title="Alt + x"></i></span>
+    </modal-header>
+
+    <modal-content>
+        <div class='modal-header-2 modal-header justify-content-inherit' style="justify-content:inherit;height: 22px !important;" *ngIf="showModalBtnToolBar">
+            <ecm-btn-group IconClass="fa fa-plus" BtnText="New" style="margin-top: -3px;" *ngIf="hideNew"></ecm-btn-group>
+            <ecm-btn-group IconClass="fa fa-save" BtnText="Save" (EcmBtnclick)="PostData()" style="margin-top: -3px;" *ngIf="hideSave"></ecm-btn-group>
+            <ecm-btn-group IconClass="fa fa-save" BtnText="Save & Close" (EcmBtnclick)="SaveandClose()" style="margin-top: -3px;" *ngIf="hideSaveClose"></ecm-btn-group>
+            <ecm-btn-group IconClass="fa fa-times" BtnText="Close" (EcmBtnclick)="close()" style="margin-top: -3px;" *ngIf="hideClose"></ecm-btn-group>
+        </div>
+        <div class='modal-header al-c modal-header-3'
+            style="align-items: center; padding: 2px 10px !important; cursor: pointer;height: 23px !important;" *ngIf="showModalBasicToolBar">
+            <span style="color: #2b92d5;" class="font-px-11 font-we-600">Basic Information</span>
+            <i class="fa fa-angle-up font-px-14" style="color: #2b92d5;"></i>
+        </div>
+        <div style="padding: 0px 1rem 15px;">
+            <ng-content></ng-content>
+        </div>
+    </modal-content>
+
+    <modal-footer class="m-0">
+        <p style="margin-bottom: 22px;"></p>
+    </modal-footer>
+</modal>

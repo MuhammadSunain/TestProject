@@ -1,0 +1,49 @@
+<ecm-top-screen-header screen_name="CITY"></ecm-top-screen-header>
+
+<ecm-modal caption="City" #mymodal (Save)="PostCitybasicData();">
+    <form [formGroup]="systemBasiccityForm">
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-lg-6">
+                    <dcs-textbox caption="Code*" formControlName="Code" [disabled]='false' [placeholder]="true">
+                    </dcs-textbox>
+                </div>
+                <div class="col-lg-12">
+                    <dcs-textbox caption="City*" formControlName="City" [disabled]='false' [placeholder]="true">
+                    </dcs-textbox>
+                </div>
+                <div class="col-lg-6">
+                    <ecm-dropdown dropdownCaption="Country*" [lookupdata]="Country" [colDefsArr]="CountrylookupArr">
+                        <select class="font-px-11" formControlName="Country" (change)="getstates($event)">
+                            <option hidden></option>
+                            <option *ngFor="let item of Country;">{{item.Country}}</option>
+                        </select>
+                    </ecm-dropdown>
+                </div>
+                <div class="col-lg-6">
+                    <ecm-dropdown dropdownCaption="State*" [lookupdata]="State" [colDefsArr]="StatelookupArr">
+                        <select class="font-px-11" formControlName="State">
+                            <option hidden></option>
+                            <option *ngFor="let item of State;">{{item.State}}</option>
+                        </select>
+                    </ecm-dropdown>
+                </div>
+                <div class="col-lg-6">
+                    <dcs-textbox caption="Dial Code" formControlName="" [disabled]='false' [placeholder]="true">
+                    </dcs-textbox>
+                </div>
+            </div>
+        </div>   
+    </form>
+</ecm-modal>
+
+
+<div class="padding-Screen" style="padding-top: 0 !important;margin-top: -2px;">
+    <ecm-btn-group IconClass="fa fa-plus" BtnText="New" (EcmBtnclick)="openModal()"></ecm-btn-group>
+    <div class="ag-theme-alpine">
+        <ecm-ag-grid [rowData]="rowdata" defaultHeight="510" [_columns]="ColDefs">
+        </ecm-ag-grid>
+    </div>
+</div>  
+
+<dcs-error #dcserror [type]="type" [message]="messageerror"></dcs-error>

@@ -1,0 +1,28 @@
+<modal #ecmlookup>
+    <modal-header style="display: contents;" class="drapClass">
+        <h5 class="modal-title font-px-11 font-we-600 modal-title-simple" id="staticBackdropLabel"> {{caption}}</h5>
+        <span class='closs-modal closs-modal-simple' (click)="close();"><i class="fa fa-times font-px-12" accesskey="x"
+                title="Alt + x"></i></span>
+    </modal-header>
+
+    <modal-content>
+        <div>
+            <div class="ag-theme-alpine" style="margin-top: 24px;">
+                <ecm-ag-grid [rowData]="rowdata" [_columns]="ColDefs" top="0" right="0" defaultHeight="480"></ecm-ag-grid>
+            </div>
+        </div>
+    </modal-content>
+
+    <modal-footer class="m-0">
+        <span class="span"> TOTAL RECORD : {{total}} </span>
+    </modal-footer>
+</modal>
+
+<style>
+    .span {
+    margin: 0px 10px;
+    font-size: 13px;
+    color: var(--ecm-main);
+    font-weight: 700;
+}
+</style>

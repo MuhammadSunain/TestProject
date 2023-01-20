@@ -1,0 +1,24 @@
+<div *ngIf="!ReportDropdown">
+    <!-- [ngClass]="position === 1 ? '' : _captionWidth" -->
+    <label class='font-px-11 font-we-600' style="color: #7a7a7a;" *ngIf="showCaption === true">{{ caption }}</label>
+    <span *ngIf="(controlEl && controlEl.errors && controlEl.errors?.invalid && (controlEl.dirty || controlEl.touched)) || this.dirtytext" style="float: right;">
+      <!-- Condition to show Tooltip -->
+      <span class="tooltipss" type="button">
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+        <span class="tooltiptextss">
+          <i class="fa fa-exclamation-triangle" style="color: red;font-size: 12px ;padding-right: 2px ;"></i>
+          <!-- errMsg coming from ts file after sett its content-->
+         {{caption }} Connot be empty
+        </span>
+      </span>
+    </span>
+    <!-- [ngClass]="position === 1 ? '' : _fieldWidth" -->
+    <div [ngClass]=" (controlEl && controlEl.errors && controlEl.errors?.invalid && (controlEl.dirty || controlEl.touched)) || this.dirtytext  ? 'border-outline-invalid invalid' : 'border-outline-valid'">
+      <!-- ()="validate_int($event)" -->
+      <input #input="ngModel" id="name" [disabled]="disabled" [type]="typee"
+        class="form dcs-control" (blur)="onBlur()" [placeholder]="placeholderValue()" [(ngModel)]="value"
+         [minlength]="minlength"
+        [maxlength]="maxlength" (keyup)="masking($event)" (keypress)="validate_int($event)" autocomplete="off" />
+    </div>
+  </div>
+  <!-- [ngModelOptions]="{standalone: true}" pattern="{{patternOfElement}}" -->

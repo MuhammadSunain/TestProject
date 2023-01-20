@@ -1,0 +1,131 @@
+.tabs-nav::before {
+    content: "";
+    position: absolute;
+    height: 1px;
+    width: 103.5%;
+    background: #2b94d5;
+    left: -15px;
+    bottom: 0;
+}
+
+.tabs-nav li {
+    padding: 4px 10px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.tabs-nav li span {
+    color: #268fb5;
+}
+
+.tabs-nav li.active{
+    background: linear-gradient(270deg, #2BC4D5 0%, #2B92D5 100%);
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    color: white !important;
+}
+
+.tabs-nav li.active span {
+    color: white !important;
+}
+.App-Image-Box {
+    position: relative;
+    background: #fff;
+    display: flex;
+    z-index: 1;
+    width: 140px;
+    background-clip: padding-box;
+    border: solid 2px transparent;
+    border-radius: 10px;
+    height: 140px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    margin: 0px auto 0px;
+}
+
+.App-Image-Box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin: 0px;
+    border-radius: inherit;
+    background: linear-gradient(103deg, #2BC4D5 0%, #2B92D5 100%);
+}
+
+.App-Image-Box img {
+    width: 126px;
+}
+
+.App-Product-Image {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.App-Product-Image img {
+    width: 126px;
+    border-radius: 7px;
+}
+
+.App-Image-Box:hover .image-hover-eff-add {
+    height: 100%;
+    transition: 0.5s;
+    /* top: 0; */
+    left: 0;
+    border-radius: 7px;
+    color: white;
+    opacity: 1;
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+    z-index: 0;
+}
+
+.image-hover-eff-add {
+    position: absolute;
+    top: 0;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 7px;
+    transition: 0.5s;
+    left: 0;
+    opacity: 0;
+    height: 0;
+    background: #2b95ba52;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-hover-eff-add i {
+    width: 40px;
+    height: 40px;
+    transform: rotate(0deg);
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    margin: 3px;
+    display: flex !important;
+    background: #268fb5;
+    transition: 0.5s;
+    color: white;
+}
+
+.App-Image-Box .fa-pen-to-square {
+    position: absolute;
+    right: -8px;
+    font-size: 23px;
+    bottom: -3px;
+    color: #268fb5;
+    background: #fff;
+}    
+
+.App-Image-Box:hover .fa-pen-to-square  {
+    display: none;
+    transition: .5s;
+}

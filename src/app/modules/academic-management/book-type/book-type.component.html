@@ -1,0 +1,33 @@
+<ecm-top-screen-header screen_name="BOOK TYPE"></ecm-top-screen-header>
+
+
+<ecm-modal caption="Book Type" #mybookModal (Save)="Post_hdr_Ac_BookTypeData()">
+    <form [formGroup]="hdr_Ac_BookTypeDataForm">
+        <div class="row Product-modal-Basic-Body">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <dcs-textbox caption="Code*" formControlName="Code" [disabled]="false" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-12">
+                        <dcs-textbox caption="Book Type*" formControlName="booktype" [disabled]="false" [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </form>   
+</ecm-modal>
+
+
+<div class="padding-Screen" style="padding-top: 0 !important;margin-top: -2px;">
+    <ecm-btn-group IconClass="fa fa-plus" BtnText="New" (EcmBtnclick)="openModal()"></ecm-btn-group>
+    <div class="ag-theme-alpine">
+        <ecm-ag-grid [rowData]="rowdata" defaultHeight="510" [_columns]="columnDefs">
+        </ecm-ag-grid>
+    </div>
+</div>
+
+<ecm-loder></ecm-loder>
+<dcs-error #dcserror [type]="type" [message]="messageerror"></dcs-error>

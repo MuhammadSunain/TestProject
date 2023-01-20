@@ -1,0 +1,42 @@
+<ecm-top-screen-header screen_name="ENTITY TYPE"></ecm-top-screen-header>
+
+<ecm-modal #EntityTypeModal caption="Entity Type" (Save)="PostEntity_TypeData()">
+    <form [formGroup]="Entity_TypeForm">
+        <div class="row Product-modal-Basic-Body">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <!-- <ecm-textbox labelCaption="Code*">
+                            <input type="text" (blur)="onblur()" placeholder="Enter Code" formControlName="Code">
+                        </ecm-textbox> -->
+                        <dcs-textbox caption="Code*" formControlName="Code" [disabled]='false' [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-12">
+                        <!-- <ecm-textbox labelCaption="Entity Type*">
+                            <input type="text" (blur)="onblur()" placeholder="Enter Entity Type" formControlName="Type">
+                        </ecm-textbox> -->
+                        <dcs-textbox caption="Entity Type*" formControlName="Type" [disabled]='false' [placeholder]=true>
+                        </dcs-textbox>
+                    </div>
+                    <div class="col-lg-12">
+                        <dcs-textarea caption="Description" formControlName="Description" [placeholder]="true">
+                        </dcs-textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</ecm-modal>
+
+<div class="padding-Screen" style="padding-top: 0 !important;margin-top: -2px;">
+    <ecm-btn-group IconClass="fa fa-plus" BtnText="New" (EcmBtnclick)="openModal()"></ecm-btn-group>
+    <div class="ag-theme-alpine">
+        <ecm-ag-grid [rowData]="rowdata" (onCellClick)="getRowID($event)" defaultHeight="510" [_columns]="columnDefs">
+        </ecm-ag-grid>
+    </div>
+</div>
+
+<ecm-loder></ecm-loder>
+<dcs-error #dcserror [type]="type" [message]="message"></dcs-error>
+<dcs-delete [type]="2" #dcsdelete (delete)="deleteentitytype()"></dcs-delete>

@@ -1,0 +1,90 @@
+<div class="app-navigation">
+    <div class="app-header">
+        <div class="logo-box">
+            <!-- <img src="../../../assets/header/school-logo.png" alt=""> -->
+            <img [src]="logo" style="width: 30px; margin-left: 4px;" alt="">
+            <h4 class="m-0">{{entityName}}</h4>
+        </div>
+        <div class="school-name-and-date-time">
+            <div class="school-name">
+                <i class="fa fa-bars" (click)="toggleSidebar();"></i>
+                <h3 class="m-0">{{entityName}}</h3>
+            </div>
+            <div class="notification-and-date">
+                <img src="../../assets/branch.png" alt="" (click)="ChangeEntityModal()" style="width: 26px;margin: 0 13px;cursor: pointer;">
+                <i class="fa fa-bell"></i>
+                <div class="date">
+                    <p class="font-px-12 font-we-600 m-0">Aug 13, 2022</p>
+                    <p class="font-px-12 font-we-600 m-0">{{currentTime}}</p>
+                </div>
+                <img src="../../../assets/header/user.png" alt="" style="width: 25px;cursor: pointer;">
+            </div>
+        </div>
+    </div>
+    <div class="app-header-2">
+        <ul class="m-0 p-0" style="border-bottom: 3px solid #f9f9f9;position: relative;">
+            <li class="font-px-10" [class.active]="currentUrl == '/Dashboard/AttendenceDashboard' || currentUrl == '/Dashboard/hdr_SMComplaint'" routerLink="/Dashboard/AttendenceDashboard"><img src="../../../assets/header/header/dash.png" alt=""> DASHBOARD </li>
+            <li class="font-px-10" [class.active]="currentUrl == '/Modules/SystemSetting' || currentUrl == '/Modules/EntitySetup' || currentUrl == '/Modules/FrontDesk' || currentUrl == '/Modules/AcademicManagement' || currentUrl == '/Modules/StudentManagement' || currentUrl == '/Modules/HumanResource' || currentUrl == '/Modules/UserManagement' "
+                routerLink="/Modules/SystemSetting"><img src="../../../assets/header/header/mod.png" alt=""> MODULES </li>
+            <li class="font-px-10 m-0" [class.active]=""><img src="../../../assets/header/header/rep.png" alt=""> REPORTS </li>
+            <!-- <li class="font-px-12 active"><img src="../../../assets/header/header/dash.png" alt="">  </li> -->
+        </ul>
+    </div>
+    <aside class="side-bar" id="sidebar">
+        <ul class="m-0 p-0" style="margin-top: 20px !important;">
+            <li class="link" *ngFor="let item of screens;" [ngClass]="item.classActive" [routerLink]="item.routerLink">
+                <img [src]="item.moduleimg" alt="">
+                <span> {{item.modulename}} </span>
+            </li>
+        </ul>
+        <div class="logout-btn" (click)="openLogout()" *ngIf="showlogbtn">
+            <button class="logoutbtn">
+                <div class="logbtn-icon">
+                    <i class="fa fa-sign-out-alt fa-lg"></i>
+                </div>
+                <span class="logbtn-text"> LOGOUT </span>
+            </button>
+        </div>
+    </aside>
+</div>
+
+<div class="App-Main-Dashboard" id="main">
+    <router-outlet></router-outlet>
+</div>
+
+<dcs-delete #confrimlogoutModal [type]="1" message="Are You Sure You Want To Logout?" (custmfunc)="logout()">
+</dcs-delete>
+
+<ecm-modal caption="Switch Entity" #changeEntityModal [showModalBasicToolBar]="false" [hideNew]="false" [hideSave]="false" [hideSaveClose]="false">
+    <div class="change-entity-main">
+        <div class="change-entity-main-logo">
+            <img [src]="logo" alt="">
+        </div>
+        <div style="margin-bottom: 116px;">
+            <!-- <form [formGroup]="loginform">
+                <div class="login-input">
+                    <img src="../../../assets/login/user.png" alt="">
+                    <input type="text" placeholder="Enter Your Username" formControlName="username" *ngIf="input1">
+                </div>
+                <div class="login-input">
+                    <img src="../../../assets/login/password.png" alt="">
+                    <input type="password" placeholder="Enter Your Password" formControlName="password" *ngIf="input2">
+                </div>
+                <div class="login-input" *ngIf="input3">
+                    <select (change)="loginEntityWise($event)">
+                        <option hidden></option>
+                        <option>{{EntityName}}</option>
+                    </select>
+                    [value]="item.Id" *ngFor="let item of Entities;" [value]="item.Id"
+                </div>
+                <div class="login-btn">
+                    <button (click)="checkLogin()">Switch Entity</button>
+                </div>
+            </form> -->
+        </div>
+        <div class="school-image" style="position: absolute;
+        bottom: -49px;">
+            <img src="../../assets/login/school 01.png" alt="" style="width: 329px;">
+        </div>
+    </div>
+</ecm-modal>

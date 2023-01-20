@@ -1,0 +1,41 @@
+/* my-loader.component.css */
+
+.dcs-loader {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  background: transparent;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  z-index: 1050;
+  .preloader {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 200px;
+    height: 130px;
+    margin: auto;
+    border: solid;
+    padding: 7px;
+    border-radius: 20px;
+    border-width: 0px;
+    border-color: #287fc4;
+    background: transparent;
+    z-index: 9999;
+    .imgcenter {
+      position: absolute;
+      top: 0px;
+      right: 0;
+      left: 90px;
+      bottom: 0;
+      padding: 3px;
+      margin: auto;
+      height: 127px;
+      margin-left: -36px;
+      border-radius: 4px;
+    }
+  }
+}

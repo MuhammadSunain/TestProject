@@ -1,0 +1,33 @@
+<div style="position: relative;">
+    <!-- [ngStyle]="{top: top, right: right}" -->
+    <div class="abc" *ngIf="rowselect" style="top: -24px;right: -3px;">
+        <div class="grid-options">
+            <button class="bg-none border-none" (click)="FilterShow()"> <i class="fa fa-filter"></i> </button>
+            <!-- <button class="bg-none border-none" (click)="DownloadToExcel();"> <i class="fa fa-download"></i> </button> -->
+            <button class="bg-none border-none" (click)="refresh();"> <i class="fa fa-refresh"></i> </button>
+        </div>
+        <!-- <i class="fas fa-angle-down font-px-14" style="position: absolute;right:12px;top: 5px;color: #2b92d5;"></i> -->
+        <select class="App-grid-Select" (change)="getRows($event)">
+            <option value="5"> 5 </option>
+            <option value="10"> 10 </option>
+            <option value="15" selected> 15 </option>
+            <option value="20"> 20 </option>
+            <option value="50"> 50 </option>
+        </select>
+    </div>
+
+    <ag-grid-angular [ngStyle]="{height:height}" [headerHeight]="headheight" [rowData]="rowData" (rowClicked)="openOnClick($event)" (gridReady)="onGridReady($event)" (filterChanged)="onFilterChanged($event)" [pagination]="pagination" (rowSelected)="onRowSelected($event)"
+        (rowDoubleClicked)="openOnDbClick($event)" [columnDefs]="_columns" [rowSelection]="rowSelection" [paginationAutoPageSize]="true" [overlayNoRowsTemplate]="overlayNoRowsTemplate" (onSelectionCahnged)="check($event)" [rowHeight]="rowHeight" (cellButtonClicked)="cellButtonClickEvent($event)"
+        (cellClicked)="onCellClicked($event)">
+    </ag-grid-angular>
+</div>
+
+
+<style>
+    .abc {
+        position: absolute;
+        z-index: 111;
+        /* right: 5px; */
+        /* top: 90px; */
+    }
+</style>

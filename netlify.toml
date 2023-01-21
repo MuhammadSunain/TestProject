@@ -1,0 +1,9 @@
+[build]
+    command = "ng build"
+    publish = "/build"
+    base = "/authentication/login"
+
+[[redirects]]
+    from = "/*"
+    to = "src/index.html"
+    status = 200

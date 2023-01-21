@@ -48,6 +48,7 @@ import { CertificateStageComponent } from './modules/front-desk/setup/certificat
 import { ComplainsDashboardComponent } from './dashboard/dashboard/complains-dashboard/complains-dashboard.component';
 import { CaseRegisterComponent } from './modules/front-desk/Desk/case-register/case-register.component';
 import { BookComponent } from './modules/academic-management/book/book.component';
+import { AuthGuard } from './@Core/shared/auth.guard';
 
 const routes: Routes = [
   {path: "authentication/login", component: LoginComponent},
@@ -55,24 +56,29 @@ const routes: Routes = [
   {
     path: 'Dashboard', 
     component: DashboardComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'AttendenceDashboard', 
-        component: AttendashboardComponent
+        component: AttendashboardComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'hdr_SMComplaint', 
-        component: ComplainsDashboardComponent
+        component: ComplainsDashboardComponent,
+        canActivate: [AuthGuard],
       },
     ]
   },
   {
     path: "Modules",
     component: ModulesComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'SystemSetting', 
         component: SystemSettingsComponent,
+        canActivate: [AuthGuard],
       },
       // {
       //   path: 'SystemSetting/SystemPolicies', 
@@ -81,162 +87,202 @@ const routes: Routes = [
       {
         path: 'EntitySetup', 
         component: EntitySetupComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'EntitySetup/Entity',
-        component: EntityComponent
+        component: EntityComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'EntitySetup/Entity_Type',
-        component: EntityTypeComponent
+        component: EntityTypeComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'EntitySetup/Country',
-        component: CountryComponent
+        component: CountryComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'EntitySetup/State',
-        component: StateComponent
+        component: StateComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'EntitySetup/City',
-        component: CityComponent
+        component: CityComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'FrontDesk',
-        component: FrontDeskComponent
+        component: FrontDeskComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'FrontDesk/CaseGroup',
         component: CaseGroupComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'FrontDesk/CaseType',
         component: CaseTypeComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'FrontDesk/Source',
         component: SourceComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'FrontDesk/Purpose',
         component: PurposeComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'FrontDesk/CertificateType',
         component: CertificateTypeComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'FrontDesk/CaseRules',
         component: CaseRulesComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'FrontDesk/CertificateStage',
         component: CertificateStageComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'FrontDesk/CaseRegister',
         component: CaseRegisterComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'AcademicManagement',
-        component: AcademicManagementComponent
+        component: AcademicManagementComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'AcademicManagement/hdr_Ac_Syllabus',
-        component: SyllabusComponent
+        component: SyllabusComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'AcademicManagement/hdr_Ac_Courses',
-        component: CourseComponent
+        component: CourseComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'AcademicManagement/hdr_Ac_Section',
-        component: SectionComponent
+        component: SectionComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'AcademicManagement/hdr_Ac_Section_Group',
-        component: SectionGroupComponent
+        component: SectionGroupComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'AcademicManagement/hdr_Ac_SubjectType',
-        component: SubjectTypeComponent
+        component: SubjectTypeComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'AcademicManagement/hdr_Ac_Subject',
-        component: SubjectsComponent
+        component: SubjectsComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'AcademicManagement/hdr_Ac_BookType',
-        component: BookTypeComponent
+        component: BookTypeComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'AcademicManagement/hdr_Ac_BookCategory',
-        component: BookCategoryComponent
+        component: BookCategoryComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'AcademicManagement/hdr_Ac_BookPublisher',
-        component: BookPublisherComponent
+        component: BookPublisherComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'AcademicManagement/hdr_Ac_BookAuthor',
-        component: BookAuthorComponent
+        component: BookAuthorComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'AcademicManagement/hdr_Ac_Book',
-        component: BookComponent
+        component: BookComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'StudentManagement', 
         component: StudentComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'HumanResource', 
         component: HumanResourceComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'HumanResource/EmployeeProfiling/Profiling', 
         component: EmployeeProfile2Component,
+        canActivate: [AuthGuard],
       },
       {
         path: 'StudentManagement/Student_Category', 
         component: StudentCategoryComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'StudentManagement/hdr_SM_Caste', 
         component: CasteComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'StudentManagement/SMS_QualificationType', 
         component: SmsQualificationTypeComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'StudentManagement/SMS_Qualification', 
         component: SmsQualificationComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'StudentManagement/SMS_Religion', 
         component: SmsReligionComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'StudentManagement/hdr_SM_student_Info', 
         component: StudentInformationComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'StudentManagement/SMStuAttendance', 
         component: ClassAttendenceComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'UserManagement', 
         component: UserManagrmentComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'UserManagement/Role', 
         component: UserRoleComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'UserManagement/UserAuthrization', 
         component: UserAuthrizationComponent,
+        canActivate: [AuthGuard],
       },
     ]
   }

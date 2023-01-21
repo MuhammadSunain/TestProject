@@ -12,6 +12,7 @@ import { BaseService } from 'src/app/@Core/Services/base.service';
 import { EcmModalComponent } from 'src/app/components/ecm-modal/ecm-modal.component';
 import { DcsMessageComponent } from 'src/app/components/dcs-message/dcs-error.component';
 import { AppConstants } from '../../utconstant/app.constant';
+import { LocalStorage } from 'src/app/utconstant/LocalStorage';
 
 @Component({
   selector: 'app-login',
@@ -37,12 +38,14 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private entityService: EntityServiceService,
     private _http: HttpClient,
-    private baseService: BaseService
+    private baseService: BaseService,
+    private localstorage: LocalStorage
   ) {}
   @ViewChild('forgetModal') forgetModal?: EcmModalComponent;
   @ViewChild('dcserror') dcserror?: DcsMessageComponent;
   async ngOnInit(): Promise<void> {
     this.clientid = AppConstants.settings.clientid;
+    this.localstorage.remove('token')
     this.loginform = new FormGroup({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
@@ -129,6 +132,7 @@ export class LoginComponent implements OnInit {
     this._http.get('http://localhost:2216/api/Entities/GetEntityByIdandid/' + abc).subscribe((res:any) => {
       var nameForStd = res.filter((d:any) => d.entityId)[0];
       localStorage.setItem('EntityName', nameForStd.EntityName);
+      this.localstorage.set("token", 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyaWQiOiIxMDEiLCJzZXNzaW9uaWQiOiIyNzIwMyIsInJvbGVpZCI6IjIiLCJjbGllbnRpZCI6IjE1NCIsImlzcyI6Imh0dHA6Ly9kaWdpY29wU29sdXRpb24uZWRhcC5jb20iLCJhdWQiOiI0MTRlMTkyN2EzODg0ZjY4YWJjNzlmNzI4MzgzN2ZkMSIsImV4cCI6MTY3NDM2NTgyMiwibmJmIjoxNjc0Mjc5NDIyfQ.i2bL1fibn1djmi3plfVc3vwBuGtPIVnfL-9yR3eINGg')
     });
   }
 

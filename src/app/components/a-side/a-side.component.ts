@@ -7,6 +7,7 @@ import {BaseService} from 'src/app/@Core/Services/base.service';
 import {EcmModalComponent} from 'src/app/components/ecm-modal/ecm-modal.component';
 import { AppConstants } from '../../utconstant/app.constant'
 import { DcsDeleteComponent } from '../dcs-delete/dcs-delete.component';
+import { LocalStorage } from 'src/app/utconstant/LocalStorage';
 
 @Component({
   selector: 'a-side',
@@ -35,6 +36,7 @@ export class ASideComponent implements OnInit {
     private _http: HttpClient,
     private router: Router,
     private baseService: BaseService,
+    private localstorage: LocalStorage
   ) {
     setInterval(() => {
       const currentDate = new Date();
@@ -73,7 +75,8 @@ export class ASideComponent implements OnInit {
   }
 
   logout() {
-    this.router.navigate(['/authentication/login'])
+    this.router.navigate(['/authentication/login']);
+    this.localstorage.remove('token')
   }
 
 }

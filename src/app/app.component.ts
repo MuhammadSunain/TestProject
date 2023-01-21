@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import {EcmModalComponent} from './components/ecm-modal/ecm-modal.component';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { AppConstants } from './utconstant/app.constant';
+import { LocalStorage } from './utconstant/LocalStorage';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +13,15 @@ export class AppComponent {
   title = 'ecom-app';
   EntityForm: any = FormGroup;
 
+  constructor(
+    private localstorage: LocalStorage
+  ){}
+
   ngOnInit() {
     var clientId = AppConstants.settings.clientid;
     localStorage.setItem('clientid', String(clientId))
-    this.EntityForm = new FormGroup({
-      Code: new FormControl('', [Validators.required]),
-    })
+    this.localstorage.set('apiUrl', AppConstants.urls.api)
+    this.localstorage.set('apiUtUrl', AppConstants.urls.ut)
   }
   
   getvalue() {

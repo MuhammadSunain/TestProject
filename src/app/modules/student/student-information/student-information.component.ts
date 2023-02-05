@@ -37,7 +37,7 @@ export class StudentInformationComponent implements OnInit {
   Courses: any;
   Sections: any;
   SectionGroup: any;
-  nameForStudentId : any = "ECM";
+  nameForStudentId : any = "";
   stdCategridArr: any = [];
   countryGridArr: any = [];
   @ViewChild('mystudentInfoModal') mystudentInfoModal?: EcmModalComponent;
@@ -75,9 +75,9 @@ export class StudentInformationComponent implements OnInit {
   }
 
   async getLoginEntity() {
-    this._http.get(this.url + "Entities/GetEntityById/" + this.entityId).subscribe((res:any) => {
-      var nameForStd = res.filter((d:any) => d.Code)[0];
-      this.nameForStudentId = nameForStd.Code;
+    this._http.get(this.url + "Entities/GetEntityByIdandid/" + this.entityId).subscribe((res:any) => {
+      var entObj = res[0];
+      this.nameForStudentId = entObj.Code;
     })
   }
 
